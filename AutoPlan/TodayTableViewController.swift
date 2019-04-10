@@ -106,7 +106,7 @@ class TodayTableViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow!
             let task = tasks[indexPath.row]
             let navController = segue.destination as! UINavigationController
-            let taskTableViewController = navController.topViewController as! TaskTableViewController
+            let taskTableViewController = navController.topViewController as! AddEditTaskTableViewController
             taskTableViewController.task = task
         }
     }
