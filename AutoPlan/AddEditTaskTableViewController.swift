@@ -25,6 +25,24 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
+    @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(deferDatePicker.date > dueDatePicker.date) {
+            dueDatePicker.date = deferDatePicker.date
+        }
+        updateDateViews()
+    }
+    
+    @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(dueDatePicker.date < deferDatePicker.date) {
+            deferDatePicker.date = dueDatePicker.date
+        }
+        updateDateViews()
+    }
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateDoneButtonState()
+    }
+    
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 2)
     
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 2)
@@ -41,10 +59,6 @@ class AddEditTaskTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
-        updateDateViews()
-    }
-    
     func updateDoneButtonState() {
         let text = titleTextField.text ?? ""
         doneBarButton.isEnabled = !text.isEmpty
@@ -56,10 +70,6 @@ class AddEditTaskTableViewController: UITableViewController {
         
         deferDateLabel.text = dateFormatter.string(from: deferDatePicker.date)
         dueDateLabel.text = dateFormatter.string(from: dueDatePicker.date)
-    }
-    
-    @IBAction func textEditingChanged(_ sender: UITextField) {
-        updateDoneButtonState()
     }
     
     override func viewDidLoad() {
