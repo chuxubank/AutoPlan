@@ -78,7 +78,7 @@ class AddEditTaskTableViewController: UITableViewController {
         // Load data
         if let task = task {
             titleTextField.text = task.title
-            noteTextView.text = task.note
+            noteTextView.text = task.notes
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
         }
@@ -162,7 +162,7 @@ class AddEditTaskTableViewController: UITableViewController {
         }
         
         task!.title = titleTextField.text ?? ""
-        task?.note = noteTextView.text ?? ""
+        task?.notes = noteTextView.text ?? ""
         task?.dueDate = dueDatePicker.date
         task?.deferDate = deferDatePicker.date
         

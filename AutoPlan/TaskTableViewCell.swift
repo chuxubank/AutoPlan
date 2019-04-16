@@ -16,7 +16,7 @@ class TaskTableViewCell: UITableViewCell {
     
     func update(with task: Task) {
         titleLabel.text = task.title
-        noteLabel.text = task.note
+        noteLabel.text = task.notes
     }
     
     override func awakeFromNib() {

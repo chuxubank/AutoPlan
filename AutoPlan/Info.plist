@@ -41,9 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSReminderUsageDescription</key>
-	<string></string>
-	<key>NSCalendarUsageDescription</key>
-	<string></string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Need access to Reminder</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Need access to Calendar</string>
 </dict>
 </plist>
