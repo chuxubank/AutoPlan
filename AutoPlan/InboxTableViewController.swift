@@ -20,13 +20,7 @@ class InboxTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,7 +106,6 @@ class InboxTableViewController: UITableViewController {
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
@@ -157,7 +150,7 @@ class InboxTableViewController: UITableViewController {
         }
     }
 
-    @IBAction func unwindToToday(segue: UIStoryboardSegue) {
+    @IBAction func unwindToInbox(segue: UIStoryboardSegue) {
         
     }
 }

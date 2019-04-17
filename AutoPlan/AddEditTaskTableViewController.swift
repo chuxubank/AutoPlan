@@ -25,38 +25,54 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
-    @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
-        if(deferDatePicker.date > dueDatePicker.date) {
-            dueDatePicker.date = deferDatePicker.date
-        }
-        updateDateViews()
-    }
-    
-    @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
-        if(dueDatePicker.date < deferDatePicker.date) {
-            deferDatePicker.date = dueDatePicker.date
-        }
-        updateDateViews()
-    }
+    @IBOutlet weak var durationTimeLabel: UILabel!
+    @IBOutlet weak var durationTimePicker: UIDatePicker!
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateDoneButtonState()
     }
     
-    let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 2)
+    @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(deferDatePicker.date > dueDatePicker.date) {
+            dueDatePicker.date = deferDatePicker.date
+        }
+                updateDateTimeLabel()
+    }
+    @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(dueDatePicker.date < deferDatePicker.date) {
+            deferDatePicker.date = dueDatePicker.date
+        }
+                updateDateTimeLabel()
+    }
     
+    @IBAction func durationTimePickerValueChanged(_ sender: UIDatePicker) {
+                updateDateTimeLabel()
+    }
+    
+    let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 2)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 2)
+    
+    let durationTimePickerCellIndexPath = IndexPath(row: 1, section: 3)
     
     var isDeferDatePickerShown: Bool = false {
         didSet {
             deferDatePicker.isHidden = !isDeferDatePickerShown
         }
     }
-    
     var isDueDatePickerShown: Bool = false {
         didSet {
             dueDatePicker.isHidden = !isDueDatePickerShown
         }
+    }
+    
+    var isDurationTimePickerShown: Bool = false {
+        didSet {
+            durationTimePicker.isHidden = !isDurationTimePickerShown
+        }
+    }
+    
+    var durationMinutes: Int {
+        return Int(durationTimePicker.countDownDuration/60)
     }
     
     func updateDoneButtonState() {
@@ -64,12 +80,14 @@ class AddEditTaskTableViewController: UITableViewController {
         doneBarButton.isEnabled = !text.isEmpty
     }
 
-    func updateDateViews() {
+    func         updateDateTimeLabel() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         
         deferDateLabel.text = dateFormatter.string(from: deferDatePicker.date)
         dueDateLabel.text = dateFormatter.string(from: dueDatePicker.date)
+        
+        durationTimeLabel.text = String(format:"%d mins", durationMinutes)
     }
     
     override func viewDidLoad() {
@@ -81,52 +99,42 @@ class AddEditTaskTableViewController: UITableViewController {
             noteTextView.text = task.notes
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
+            durationTimePicker.countDownDuration = TimeInterval(task.duration*60)
+        } else {
+            durationTimePicker.countDownDuration = 25*60
         }
         
-        updateDateViews()
+        updateDateTimeLabel()
         updateDoneButtonState()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    // MARK: - Table view
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Switch DatePicker
         tableView.deselectRow(at: indexPath, animated: true)
+        view.endEditing(true)   // Hide Keyboard
+        // Switch DatePicker
         switch (indexPath.section, indexPath.row) {
         case (deferDatePickerCellIndexPath.section, deferDatePickerCellIndexPath.row - 1):
-            view.endEditing(true)
-            if isDeferDatePickerShown {
-                isDeferDatePickerShown = false;
-            } else if isDueDatePickerShown {
-                isDueDatePickerShown = false
-                isDeferDatePickerShown = true
-            } else {
-                isDeferDatePickerShown = true
-            }
-            
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            isDeferDatePickerShown = !isDeferDatePickerShown
+            isDueDatePickerShown = false
+            isDurationTimePickerShown = false
             
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row - 1):
-            view.endEditing(true)   // Hide Keyboard
-            if isDueDatePickerShown {
-                isDueDatePickerShown = false
-            } else if isDeferDatePickerShown {
-                isDeferDatePickerShown = false
-                isDueDatePickerShown = true
-            } else {
-                isDueDatePickerShown = true
-            }
-            
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            isDeferDatePickerShown = false
+            isDueDatePickerShown = !isDueDatePickerShown
+            isDurationTimePickerShown = false
+        
+        case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row - 1):
+            isDeferDatePickerShown = false
+            isDueDatePickerShown = false
+            isDurationTimePickerShown = !isDurationTimePickerShown
             
         default:
             break
         }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -140,6 +148,12 @@ class AddEditTaskTableViewController: UITableViewController {
             }
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row):
             if isDueDatePickerShown {
+                return 216.0
+            } else {
+                return 0.0
+            }
+        case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row):
+            if isDurationTimePickerShown {
                 return 216.0
             } else {
                 return 0.0
@@ -165,6 +179,7 @@ class AddEditTaskTableViewController: UITableViewController {
         task?.notes = noteTextView.text ?? ""
         task?.dueDate = dueDatePicker.date
         task?.deferDate = deferDatePicker.date
+        task?.duration = Int16(durationMinutes)
         
 //        print("title: \(task.title) note: \(task.note)")
 //        print("deadline: \(task.deadline)")
