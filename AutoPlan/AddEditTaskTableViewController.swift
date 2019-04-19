@@ -18,7 +18,7 @@ class AddEditTaskTableViewController: UITableViewController {
         
     @IBOutlet weak var titleTextField: UITextField!
     
-    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var notesTextView: UITextView!
     
     @IBOutlet weak var deferDateLabel: UILabel!
     @IBOutlet weak var deferDatePicker: UIDatePicker!
@@ -49,10 +49,11 @@ class AddEditTaskTableViewController: UITableViewController {
         updateDateTimeLabel()
     }
     
-    let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 2)
-    let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 2)
+    let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
+    let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
+    let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
     
-    let durationTimePickerCellIndexPath = IndexPath(row: 1, section: 3)
+    let notesTextViewIndexPath = IndexPath(row: 1, section: 2)
     
     var isDeferDatePickerShown: Bool = false {
         didSet {
@@ -96,7 +97,7 @@ class AddEditTaskTableViewController: UITableViewController {
         // Load data
         if let task = task {
             titleTextField.text = task.title
-            noteTextView.text = task.notes
+            notesTextView.text = task.notes
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
             durationTimePicker.countDownDuration = TimeInterval(task.duration*60)
@@ -158,6 +159,8 @@ class AddEditTaskTableViewController: UITableViewController {
             } else {
                 return 0.0
             }
+        case (notesTextViewIndexPath.section, notesTextViewIndexPath.row):
+            return 180.0
         default:
             return 44.0
         }
@@ -176,7 +179,7 @@ class AddEditTaskTableViewController: UITableViewController {
         }
         
         task!.title = titleTextField.text ?? ""
-        task?.notes = noteTextView.text ?? ""
+        task?.notes = notesTextView.text ?? ""
         task?.dueDate = dueDatePicker.date
         task?.deferDate = deferDatePicker.date
         task?.duration = Int16(durationMinutes)
