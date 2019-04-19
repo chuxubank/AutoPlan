@@ -62,8 +62,8 @@ class InboxTableViewController: UITableViewController {
     func loadReminders() {
         let predicate: NSPredicate? = store.predicateForReminders(in: [store.defaultCalendarForNewReminders()!])
         if let aPredicate = predicate {
-            store.fetchReminders(matching: aPredicate, completion: {(_ reminders: [Any]?) -> Void in
-                for reminder: EKReminder? in reminders as? [EKReminder?] ?? [EKReminder?]() {
+            store.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
+                for reminder: EKReminder? in reminders ?? [EKReminder?]() {
                     if(!reminder!.isCompleted) {
                         let task = Task(context: self.context)
                         task.title = reminder?.title
