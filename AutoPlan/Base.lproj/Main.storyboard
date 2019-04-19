@@ -409,8 +409,7 @@
                                                         <!--2019-04-02 02:10:53 +0000-->
                                                     </date>
                                                     <connections>
-                                                        <action selector="deferDatePickerValueChanged:" destination="TLE-HZ-zWI" eventType="valueChanged" id="uyD-co-Hne"/>
-                                                        <action selector="durationTimePickerValueChanged:" destination="TLE-HZ-zWI" eventType="valueChanged" id="NnT-fi-89y"/>
+                                                        <action selector="durationTimePickerValueChanged:" destination="TLE-HZ-zWI" eventType="valueChanged" id="1D8-sc-rsb"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>

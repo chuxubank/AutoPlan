@@ -36,17 +36,17 @@ class AddEditTaskTableViewController: UITableViewController {
         if(deferDatePicker.date > dueDatePicker.date) {
             dueDatePicker.date = deferDatePicker.date
         }
-                updateDateTimeLabel()
+        updateDateTimeLabel()
     }
     @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
         if(dueDatePicker.date < deferDatePicker.date) {
             deferDatePicker.date = dueDatePicker.date
         }
-                updateDateTimeLabel()
+        updateDateTimeLabel()
     }
     
     @IBAction func durationTimePickerValueChanged(_ sender: UIDatePicker) {
-                updateDateTimeLabel()
+        updateDateTimeLabel()
     }
     
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 2)
@@ -80,7 +80,7 @@ class AddEditTaskTableViewController: UITableViewController {
         doneBarButton.isEnabled = !text.isEmpty
     }
 
-    func         updateDateTimeLabel() {
+    func updateDateTimeLabel() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         
@@ -180,9 +180,6 @@ class AddEditTaskTableViewController: UITableViewController {
         task?.dueDate = dueDatePicker.date
         task?.deferDate = deferDatePicker.date
         task?.duration = Int16(durationMinutes)
-        
-//        print("title: \(task.title) note: \(task.note)")
-//        print("deadline: \(task.deadline)")
     }
 
 }
