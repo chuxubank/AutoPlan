@@ -53,7 +53,6 @@ class SelectProjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedProject = projects[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         cell!.accessoryType = .checkmark
     }
@@ -66,6 +65,7 @@ class SelectProjectTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "projectSelectedUnwind" {
             let addEditTaskViewController = segue.destination as! AddEditTaskTableViewController
+            selectedProject = projects[tableView.indexPathForSelectedRow!.row]
             addEditTaskViewController.currentProject = selectedProject
         }
     }

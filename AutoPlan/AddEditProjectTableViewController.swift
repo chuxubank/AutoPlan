@@ -23,6 +23,8 @@ class AddEditProjectTableViewController: UITableViewController {
         updateDoneButtonState()
     }
     
+    let notesTextViewCellIndexPath = IndexPath(row: 0, section: 1)
+    
     func updateDoneButtonState() {
         let text = titleTextField.text ?? ""
         doneBarButton.isEnabled = !text.isEmpty
@@ -42,8 +44,9 @@ class AddEditProjectTableViewController: UITableViewController {
 
     // MARK: - Table view
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Define Date Picker height
-        switch (indexPath.section, indexPath.row) {
+        switch indexPath {
+        case notesTextViewCellIndexPath:
+            return 180.0
         default:
             return 44.0
         }
