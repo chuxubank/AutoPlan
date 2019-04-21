@@ -98,6 +98,16 @@ class AddEditTaskTableViewController: UITableViewController {
         durationTimeLabel.text = String(format:"%d mins", durationMinutes)
     }
     
+    func updateSelectedProjectState() {
+        if currentProject == nil {
+            isProjectSelected = false
+            projectLabel.text = "None"
+        } else {
+            projectLabel.text = currentProject?.title
+            isProjectSelected = true
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,11 +129,9 @@ class AddEditTaskTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if currentProject == nil {
-            projectLabel.text = "None"
-        } else {
-            projectLabel.text = currentProject?.title
-        }
+        updateSelectedProjectState()
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     // MARK: - Table view

@@ -21,11 +21,11 @@ class InboxTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        checkReminderAuthorizationStatus()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkReminderAuthorizationStatus()
         updateTasks()
         tableView.reloadData()
     }

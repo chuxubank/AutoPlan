@@ -46,7 +46,6 @@ class ProjectTableViewController: UITableViewController {
         let project = projects[indexPath.row]
         cell.textLabel?.text = project.title
         cell.detailTextLabel?.text = project.notes
-        cell.showsReorderControl = true
         return cell
     }
 
@@ -57,7 +56,7 @@ class ProjectTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     /*
@@ -81,8 +80,8 @@ class ProjectTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "EditProject" {
-            let indexPath = tableView.indexPathForSelectedRow!
+        if segue.identifier == "ViewProjectDetail" {
+            let indexPath = tableView.indexPath(for: (sender as! UITableViewCell))!
             let project = projects[indexPath.row]
             let navController = segue.destination as! UINavigationController
             let addEditProjectTableViewController = navController.topViewController as! AddEditProjectTableViewController

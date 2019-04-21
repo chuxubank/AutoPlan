@@ -114,11 +114,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" textLabel="knX-RZ-yhV" detailTextLabel="eYX-b3-y9Y" style="IBUITableViewCellStyleSubtitle" id="kyz-g9-gGd" userLabel="ProjectCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ProjectCell" textLabel="knX-RZ-yhV" detailTextLabel="eYX-b3-y9Y" style="IBUITableViewCellStyleSubtitle" id="kyz-g9-gGd" userLabel="ProjectCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kyz-g9-gGd" id="R75-m5-mvL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="knX-RZ-yhV">
@@ -138,7 +138,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="130-lA-igY" kind="show" identifier="EditProject" id="0dt-wB-IcU"/>
+                                    <segue destination="130-lA-igY" kind="show" identifier="ViewProjectDetail" trigger="accessoryAction" id="pD6-4u-Y3H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -810,6 +810,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JJC-Dl-3gl"/>
-        <segue reference="0dt-wB-IcU"/>
+        <segue reference="pD6-4u-Y3H"/>
     </inferredMetricsTieBreakers>
 </document>
