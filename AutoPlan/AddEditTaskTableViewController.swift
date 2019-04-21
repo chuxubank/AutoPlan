@@ -16,7 +16,7 @@ class AddEditTaskTableViewController: UITableViewController {
     var currentProject: Project? = nil
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-        
+    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var notesTextView: UITextView!
@@ -157,20 +157,20 @@ class AddEditTaskTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Define Date Picker height
-        switch (indexPath.section, indexPath.row) {
-        case (deferDatePickerCellIndexPath.section, deferDatePickerCellIndexPath.row):
+        switch (indexPath) {
+        case (deferDatePickerCellIndexPath):
             return isDeferDatePickerShown ? 216.0 : 0.0
         
-        case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row):
+        case (dueDatePickerCellIndexPath):
             return isDueDatePickerShown ? 216.0 : 0.0
         
-        case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row):
+        case (durationTimePickerCellIndexPath):
             return isDurationTimePickerShown ? 216.0 : 0.0
         
-        case (projectCellIndexPath.section, projectCellIndexPath.row + 1 ... projectCellIndexPath.row + 2):
+        case [projectCellIndexPath.section, projectCellIndexPath.row + 1], [projectCellIndexPath.section, projectCellIndexPath.row + 2]:
             return isProjectSelected ? 44.0 : 0.0
             
-        case (notesTextViewIndexPath.section, notesTextViewIndexPath.row):
+        case (notesTextViewIndexPath):
             return 180.0
         
         default:
@@ -198,7 +198,7 @@ class AddEditTaskTableViewController: UITableViewController {
         
         if segue.identifier == "selectProject" {
             let selectProjectViewController = segue.destination as! SelectProjectTableViewController
-            selectProjectViewController.currentProject = currentProject
+            selectProjectViewController.selectedProject = currentProject
         }
     }
 

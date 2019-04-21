@@ -13,7 +13,7 @@ class SelectProjectTableViewController: UITableViewController {
     
     let context = AppDelegate.viewContext
     var projects = [Project]()
-    var currentProject: Project? = nil
+    var selectedProject: Project? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class SelectProjectTableViewController: UITableViewController {
         
         let project = projects[indexPath.row]
         cell.textLabel?.text = project.title
-        if project == currentProject {
+        if project == selectedProject {
             cell.accessoryType = .checkmark
         }
         return cell
@@ -53,7 +53,7 @@ class SelectProjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        currentProject = projects[indexPath.row]
+        selectedProject = projects[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         cell!.accessoryType = .checkmark
     }
@@ -66,7 +66,7 @@ class SelectProjectTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "projectSelectedUnwind" {
             let addEditTaskViewController = segue.destination as! AddEditTaskTableViewController
-            addEditTaskViewController.currentProject = currentProject
+            addEditTaskViewController.currentProject = selectedProject
         }
     }
 

@@ -248,7 +248,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gUh-m8-Z6P">
-                                                    <rect key="frame" x="20" y="11" width="374" height="194"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="575863853.18894005">
                                                         <!--2019-04-02 02:10:53 +0000-->
                                                     </date>
@@ -258,10 +258,10 @@
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gUh-m8-Z6P" secondAttribute="trailing" id="GWL-rc-ZXn"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gUh-m8-Z6P" secondAttribute="bottom" id="Kux-0G-uxC"/>
-                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="top" secondItem="D9N-75-DWZ" secondAttribute="topMargin" id="bWR-nq-X2Q"/>
-                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="leading" secondItem="D9N-75-DWZ" secondAttribute="leadingMargin" id="jZO-Qn-FeG"/>
+                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="trailing" secondItem="D9N-75-DWZ" secondAttribute="trailing" id="6lG-Vt-iKJ"/>
+                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="top" secondItem="D9N-75-DWZ" secondAttribute="top" id="KNp-9t-v6O"/>
+                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="bottom" secondItem="D9N-75-DWZ" secondAttribute="bottom" id="ncQ-l6-reh"/>
+                                                <constraint firstItem="gUh-m8-Z6P" firstAttribute="leading" secondItem="D9N-75-DWZ" secondAttribute="leading" id="yK2-Ez-gAz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -297,7 +297,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q8D-QY-RPG">
-                                                    <rect key="frame" x="20" y="11" width="374" height="194"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="575863853.18894005">
                                                         <!--2019-04-02 02:10:53 +0000-->
                                                     </date>
@@ -307,10 +307,10 @@
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="leading" secondItem="DN4-Fd-nLR" secondAttribute="leadingMargin" id="OJd-h9-35t"/>
-                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="top" secondItem="DN4-Fd-nLR" secondAttribute="topMargin" id="rGg-ne-pr6"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Q8D-QY-RPG" secondAttribute="trailing" id="wsC-0q-XF6"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Q8D-QY-RPG" secondAttribute="bottom" id="zA6-RQ-jgb"/>
+                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="leading" secondItem="DN4-Fd-nLR" secondAttribute="leading" id="70w-wp-9y4"/>
+                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="trailing" secondItem="DN4-Fd-nLR" secondAttribute="trailing" id="dOm-9X-ejo"/>
+                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="bottom" secondItem="DN4-Fd-nLR" secondAttribute="bottom" id="lHb-R5-3Px"/>
+                                                <constraint firstItem="Q8D-QY-RPG" firstAttribute="top" secondItem="DN4-Fd-nLR" secondAttribute="top" id="zuf-I9-A83"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -346,7 +346,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="eHp-P6-Ioa" userLabel="Duration Picker">
-                                                    <rect key="frame" x="20" y="11" width="374" height="194"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="575863853.18894005">
                                                         <!--2019-04-02 02:10:53 +0000-->
                                                     </date>
@@ -356,10 +356,10 @@
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eHp-P6-Ioa" secondAttribute="trailing" id="5dg-ha-Ort"/>
-                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="leading" secondItem="HBu-Cz-b3Z" secondAttribute="leadingMargin" id="DVd-pi-F8F"/>
-                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="top" secondItem="HBu-Cz-b3Z" secondAttribute="topMargin" id="bEo-fF-zkQ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="eHp-P6-Ioa" secondAttribute="bottom" id="swf-hb-zHw"/>
+                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="trailing" secondItem="HBu-Cz-b3Z" secondAttribute="trailing" id="03i-n2-XAC"/>
+                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="top" secondItem="HBu-Cz-b3Z" secondAttribute="top" id="d5v-iB-0qj"/>
+                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="bottom" secondItem="HBu-Cz-b3Z" secondAttribute="bottom" id="m4F-5I-sBd"/>
+                                                <constraint firstItem="eHp-P6-Ioa" firstAttribute="leading" secondItem="HBu-Cz-b3Z" secondAttribute="leading" id="pGS-Ra-smf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -371,18 +371,18 @@
                                         <rect key="frame" x="0.0" y="931" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yx6-eC-bcC" id="bM9-pi-h9u">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7yE-Nq-Ynh">
-                                                    <rect key="frame" x="15" y="12" width="54.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="12" width="54.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Z6-Hl-E4b">
-                                                    <rect key="frame" x="338" y="12" width="41" height="20.5"/>
+                                                    <rect key="frame" x="335" y="12" width="41" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
