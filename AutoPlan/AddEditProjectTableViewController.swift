@@ -17,7 +17,7 @@ class AddEditProjectTableViewController: UITableViewController {
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var notesTextView: UITextView!
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateDoneButtonState()
@@ -30,6 +30,13 @@ class AddEditProjectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load data
+        if let project = project {
+            titleTextField.text = project.title
+            notesTextView.text = project.notes
+        }
+        
         updateDoneButtonState()
     }
 
@@ -55,7 +62,7 @@ class AddEditProjectTableViewController: UITableViewController {
         }
         
         project!.title = titleTextField.text ?? ""
-        project?.notes = noteTextView.text ?? ""
+        project?.notes = notesTextView.text ?? ""
     }
 
 }

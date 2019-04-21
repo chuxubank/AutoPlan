@@ -145,8 +145,8 @@ class InboxTableViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow!
             let task = tasks[indexPath.row]
             let navController = segue.destination as! UINavigationController
-            let taskTableViewController = navController.topViewController as! AddEditTaskTableViewController
-            taskTableViewController.task = task
+            let addEditTaskTableViewController = navController.topViewController as! AddEditTaskTableViewController
+            addEditTaskTableViewController.task = task
         }
     }
 

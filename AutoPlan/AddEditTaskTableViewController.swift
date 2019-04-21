@@ -13,6 +13,7 @@ class AddEditTaskTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     
     var task: Task? = nil
+    var currentProject: Project? = nil
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
         
@@ -27,6 +28,8 @@ class AddEditTaskTableViewController: UITableViewController {
     
     @IBOutlet weak var durationTimeLabel: UILabel!
     @IBOutlet weak var durationTimePicker: UIDatePicker!
+    
+    @IBOutlet weak var projectLabel: UILabel!
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateDoneButtonState()
@@ -53,7 +56,9 @@ class AddEditTaskTableViewController: UITableViewController {
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
     
-    let notesTextViewIndexPath = IndexPath(row: 1, section: 2)
+    let projectCellIndexPath = IndexPath(row: 0, section: 2)
+    
+    let notesTextViewIndexPath = IndexPath(row: 0, section: 3)
     
     var isDeferDatePickerShown: Bool = false {
         didSet {
@@ -71,6 +76,8 @@ class AddEditTaskTableViewController: UITableViewController {
             durationTimePicker.isHidden = !isDurationTimePickerShown
         }
     }
+    
+    var isProjectSelected: Bool = false
     
     var durationMinutes: Int {
         return Int(durationTimePicker.countDownDuration/60)
@@ -101,12 +108,22 @@ class AddEditTaskTableViewController: UITableViewController {
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
             durationTimePicker.countDownDuration = TimeInterval(task.duration*60)
+            currentProject = task.project
+            projectLabel.text = task.project?.title
         } else {
             durationTimePicker.countDownDuration = 25*60
         }
         
         updateDateTimeLabel()
         updateDoneButtonState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if currentProject == nil {
+            projectLabel.text = "None"
+        } else {
+            projectLabel.text = currentProject?.title
+        }
     }
     
     // MARK: - Table view
@@ -142,25 +159,20 @@ class AddEditTaskTableViewController: UITableViewController {
         // Define Date Picker height
         switch (indexPath.section, indexPath.row) {
         case (deferDatePickerCellIndexPath.section, deferDatePickerCellIndexPath.row):
-            if isDeferDatePickerShown {
-                return 216.0
-            } else {
-                return 0.0
-            }
+            return isDeferDatePickerShown ? 216.0 : 0.0
+        
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row):
-            if isDueDatePickerShown {
-                return 216.0
-            } else {
-                return 0.0
-            }
+            return isDueDatePickerShown ? 216.0 : 0.0
+        
         case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row):
-            if isDurationTimePickerShown {
-                return 216.0
-            } else {
-                return 0.0
-            }
+            return isDurationTimePickerShown ? 216.0 : 0.0
+        
+        case (projectCellIndexPath.section, projectCellIndexPath.row + 1 ... projectCellIndexPath.row + 2):
+            return isProjectSelected ? 44.0 : 0.0
+            
         case (notesTextViewIndexPath.section, notesTextViewIndexPath.row):
             return 180.0
+        
         default:
             return 44.0
         }
@@ -172,17 +184,25 @@ class AddEditTaskTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard segue.identifier == "taskDoneUnwind" else { return }
-        
-        if task == nil {
-            task = Task(context: context)
+        if segue.identifier == "taskDoneUnwind" {
+            if task == nil {
+                task = Task(context: context)
+            }
+            task!.title = titleTextField.text ?? ""
+            task?.notes = notesTextView.text ?? ""
+            task?.dueDate = dueDatePicker.date
+            task?.deferDate = deferDatePicker.date
+            task?.duration = Int16(durationMinutes)
+            task?.project = currentProject
         }
         
-        task!.title = titleTextField.text ?? ""
-        task?.notes = notesTextView.text ?? ""
-        task?.dueDate = dueDatePicker.date
-        task?.deferDate = deferDatePicker.date
-        task?.duration = Int16(durationMinutes)
+        if segue.identifier == "selectProject" {
+            let selectProjectViewController = segue.destination as! SelectProjectTableViewController
+            selectProjectViewController.currentProject = currentProject
+        }
     }
 
+    @IBAction func unwindToTask(segue: UIStoryboardSegue) {
+        
+    }
 }

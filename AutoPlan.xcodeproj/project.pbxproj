@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */; };
 		E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565DF352251929D00B2531D /* TodayTableViewController.swift */; };
 		E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */; };
 		E581857B225110B6002148A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E581857A225110B6002148A0 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProjectTableViewController.swift; sourceTree = "<group>"; };
 		E565DF352251929D00B2531D /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		E565DF3822519CCF00B2531D /* AutoPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoPlan.xcdatamodel; sourceTree = "<group>"; };
 		E5818577225110B6002148A0 /* AutoPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
 				E59316902252E7CE00936CB5 /* InboxTableViewController.swift */,
 				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
+				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
 				E5A31CA222669CC90047233B /* ProjectTableViewController.swift */,
 				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
 			);
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5CAD72922543AEE00936D9D /* TaskTableViewCell.swift in Sources */,
+				E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */,
 				E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */,
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
 				E5A31CA322669CC90047233B /* ProjectTableViewController.swift in Sources */,
