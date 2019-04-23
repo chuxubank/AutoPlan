@@ -15,9 +15,9 @@
 		E5818580225110B6002148A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E581857E225110B6002148A0 /* Main.storyboard */; };
 		E5818588225110B7002148A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5818586225110B7002148A0 /* LaunchScreen.storyboard */; };
 		E58F061E2256F1FF00D84219 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58F061D2256F1FF00D84219 /* HealthKit.framework */; };
-		E59316912252E7CE00936CB5 /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59316902252E7CE00936CB5 /* InboxTableViewController.swift */; };
+		E59316912252E7CE00936CB5 /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */; };
 		E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */; };
-		E5A31CA322669CC90047233B /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA222669CC90047233B /* ProjectTableViewController.swift */; };
+		E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */; };
 		E5A31CA52266A0110047233B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A31CA42266A0110047233B /* Media.xcassets */; };
 		E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */; };
 		E5CAD72922543AEE00936D9D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */; };
@@ -35,9 +35,9 @@
 		E5818589225110B7002148A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E58F061B2256F1FF00D84219 /* AutoPlan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoPlan.entitlements; sourceTree = "<group>"; };
 		E58F061D2256F1FF00D84219 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		E59316902252E7CE00936CB5 /* InboxTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
+		E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTaskTableViewController.swift; sourceTree = "<group>"; };
-		E5A31CA222669CC90047233B /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
+		E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListTableViewController.swift; sourceTree = "<group>"; };
 		E5A31CA42266A0110047233B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditProjectTableViewController.swift; sourceTree = "<group>"; };
 		E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,10 +82,10 @@
 				E581857E225110B6002148A0 /* Main.storyboard */,
 				E581857C225110B6002148A0 /* MainViewController.swift */,
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
-				E59316902252E7CE00936CB5 /* InboxTableViewController.swift */,
+				E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */,
 				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
 				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
-				E5A31CA222669CC90047233B /* ProjectTableViewController.swift */,
+				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
 				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
 			);
 			path = AutoPlan;
@@ -198,12 +198,12 @@
 				E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */,
 				E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */,
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
-				E5A31CA322669CC90047233B /* ProjectTableViewController.swift in Sources */,
+				E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */,
 				E581857D225110B6002148A0 /* MainViewController.swift in Sources */,
 				E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */,
 				E581857B225110B6002148A0 /* AppDelegate.swift in Sources */,
 				E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */,
-				E59316912252E7CE00936CB5 /* InboxTableViewController.swift in Sources */,
+				E59316912252E7CE00936CB5 /* TaskListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ProjectTableViewController: UITableViewController {
+class ProjectListTableViewController: UITableViewController {
     
     let context = AppDelegate.viewContext
     var projects = [Project]()
@@ -86,6 +86,13 @@ class ProjectTableViewController: UITableViewController {
             let navController = segue.destination as! UINavigationController
             let addEditProjectTableViewController = navController.topViewController as! AddEditProjectTableViewController
             addEditProjectTableViewController.project = project
+        }
+        
+        if segue.identifier == "ShowTasksList" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let project = projects[indexPath.row]
+            let taskListTableViewController = segue.destination as! TaskListTableViewController
+            taskListTableViewController.sourceProject = project
         }
     }
 

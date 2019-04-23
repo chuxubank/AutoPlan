@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import EventKit
 
-class InboxTableViewController: UITableViewController {
+class TaskListTableViewController: UITableViewController {
 
     let context = AppDelegate.viewContext
     
@@ -18,10 +18,13 @@ class InboxTableViewController: UITableViewController {
     
     var tasks = [Task]()
     
+    var sourceProject: Project? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
-        checkReminderAuthorizationStatus()
+        if sourceProject == nil {
+            checkReminderAuthorizationStatus()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +81,8 @@ class InboxTableViewController: UITableViewController {
     
     func updateTasks() {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
+        let predicate = NSPredicate(format: "project = %@", sourceProject ?? "")
+        request.predicate = predicate
         tasks = try! context.fetch(request)
     }
 

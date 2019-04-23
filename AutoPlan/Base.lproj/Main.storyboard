@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="-1584" y="396"/>
         </scene>
-        <!--Project-->
+        <!--Project List-->
         <scene sceneID="sHm-cL-rCz">
             <objects>
-                <tableViewController id="SPl-aa-75S" userLabel="Project" customClass="ProjectTableViewController" customModule="AutoPlan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="SPl-aa-75S" userLabel="Project List" customClass="ProjectListTableViewController" customModule="AutoPlan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qal-Tf-irQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="130-lA-igY" kind="show" identifier="ViewProjectDetail" trigger="accessoryAction" id="pD6-4u-Y3H"/>
+                                    <segue destination="130-lA-igY" kind="showDetail" identifier="ViewProjectDetail" trigger="accessoryAction" id="pD6-4u-Y3H"/>
+                                    <segue destination="Tw8-7U-1rh" kind="show" identifier="ShowTasksList" id="reQ-Ca-EwZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -632,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="1316" y="1158"/>
         </scene>
-        <!--Inbox-->
+        <!--Task List-->
         <scene sceneID="NMx-wU-W4S">
             <objects>
-                <tableViewController id="Tw8-7U-1rh" userLabel="Inbox" customClass="InboxTableViewController" customModule="AutoPlan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Tw8-7U-1rh" userLabel="Task List" customClass="TaskListTableViewController" customModule="AutoPlan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j4X-p8-84b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -809,6 +810,7 @@
         <image name="today" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="reQ-Ca-EwZ"/>
         <segue reference="JJC-Dl-3gl"/>
         <segue reference="pD6-4u-Y3H"/>
     </inferredMetricsTieBreakers>
