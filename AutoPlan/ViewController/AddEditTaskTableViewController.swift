@@ -41,6 +41,7 @@ class AddEditTaskTableViewController: UITableViewController {
         }
         updateDateTimeLabel()
     }
+    
     @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
         if(dueDatePicker.date < deferDatePicker.date) {
             deferDatePicker.date = dueDatePicker.date
@@ -108,6 +109,11 @@ class AddEditTaskTableViewController: UITableViewController {
         }
     }
     
+    func updateTableView() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,8 +136,7 @@ class AddEditTaskTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateSelectedProjectState()
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateTableView()
     }
     
     // MARK: - Table view
@@ -145,22 +150,23 @@ class AddEditTaskTableViewController: UITableViewController {
             isDeferDatePickerShown = !isDeferDatePickerShown
             isDueDatePickerShown = false
             isDurationTimePickerShown = false
+            updateTableView()
             
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = !isDueDatePickerShown
             isDurationTimePickerShown = false
-        
+            updateTableView()
+            
         case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = false
             isDurationTimePickerShown = !isDurationTimePickerShown
-            
+            updateTableView()
+        
         default:
             break
         }
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

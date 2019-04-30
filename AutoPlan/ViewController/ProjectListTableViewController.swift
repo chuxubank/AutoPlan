@@ -80,7 +80,7 @@ class ProjectListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "ViewProjectDetail" {
+        if segue.identifier == "ShowProjectDetail" {
             let indexPath = tableView.indexPath(for: (sender as! UITableViewCell))!
             let project = projects[indexPath.row]
             let navController = segue.destination as! UINavigationController
@@ -88,7 +88,7 @@ class ProjectListTableViewController: UITableViewController {
             addEditProjectTableViewController.project = project
         }
         
-        if segue.identifier == "ShowTasksList" {
+        if segue.identifier == "ShowTaskList" {
             let indexPath = tableView.indexPathForSelectedRow!
             let project = projects[indexPath.row]
             let taskListTableViewController = segue.destination as! TaskListTableViewController

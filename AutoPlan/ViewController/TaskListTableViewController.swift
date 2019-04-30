@@ -31,6 +31,11 @@ class TaskListTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         updateTasks()
         tableView.reloadData()
+        if sourceProject == nil {
+            self.title = "Inbox"
+        } else {
+            self.title = sourceProject!.title
+        }
     }
     
     func checkReminderAuthorizationStatus() {
@@ -81,7 +86,7 @@ class TaskListTableViewController: UITableViewController {
     
     func updateTasks() {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
-        let predicate = NSPredicate(format: "project = %@", sourceProject ?? "")
+        let predicate = NSPredicate(format: "project == %@", sourceProject ?? 0)
         request.predicate = predicate
         tasks = try! context.fetch(request)
     }

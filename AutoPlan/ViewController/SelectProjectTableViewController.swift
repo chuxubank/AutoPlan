@@ -14,6 +14,7 @@ class SelectProjectTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     var projects = [Project]()
     var selectedProject: Project? = nil
+    var noneProject: Project? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,23 @@ class SelectProjectTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         updateProjects()
         tableView.reloadData()
+        if selectedProject == nil {
+            selectedProject = noneProject
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let noneProject = noneProject {
+            context.delete(noneProject)
+        }
     }
     
     func updateProjects() {
         let request: NSFetchRequest<Project> = Project.fetchRequest()
         projects = try! context.fetch(request)
+        noneProject = Project(context: context)
+        noneProject?.title = "None"
+        projects.insert(noneProject!, at: 0)
     }
     
     // MARK: - Table view data source
@@ -65,7 +78,8 @@ class SelectProjectTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "projectSelectedUnwind" {
             let addEditTaskViewController = segue.destination as! AddEditTaskTableViewController
-            selectedProject = projects[tableView.indexPathForSelectedRow!.row]
+            let row = tableView.indexPathForSelectedRow!.row
+            selectedProject = row == 0 ? nil : projects[row]
             addEditTaskViewController.currentProject = selectedProject
         }
     }

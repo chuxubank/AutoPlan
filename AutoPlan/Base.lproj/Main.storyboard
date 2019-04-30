@@ -138,8 +138,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="130-lA-igY" kind="showDetail" identifier="ViewProjectDetail" trigger="accessoryAction" id="pD6-4u-Y3H"/>
-                                    <segue destination="Tw8-7U-1rh" kind="show" identifier="ShowTasksList" id="reQ-Ca-EwZ"/>
+                                    <segue destination="Tw8-7U-1rh" kind="show" identifier="ShowTaskList" id="reQ-Ca-EwZ"/>
+                                    <segue destination="130-lA-igY" kind="showDetail" identifier="ShowProjectDetail" trigger="accessoryAction" id="3f5-hN-F32"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -812,6 +812,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="reQ-Ca-EwZ"/>
         <segue reference="JJC-Dl-3gl"/>
-        <segue reference="pD6-4u-Y3H"/>
+        <segue reference="3f5-hN-F32"/>
     </inferredMetricsTieBreakers>
 </document>
