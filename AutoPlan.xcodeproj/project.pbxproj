@@ -10,6 +10,7 @@
 		E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */; };
 		E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565DF352251929D00B2531D /* TodayTableViewController.swift */; };
 		E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */; };
+		E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */; };
 		E581857B225110B6002148A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E581857A225110B6002148A0 /* AppDelegate.swift */; };
 		E581857D225110B6002148A0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E581857C225110B6002148A0 /* MainViewController.swift */; };
 		E5818580225110B6002148A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E581857E225110B6002148A0 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProjectTableViewController.swift; sourceTree = "<group>"; };
 		E565DF352251929D00B2531D /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		E565DF3822519CCF00B2531D /* AutoPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoPlan.xcdatamodel; sourceTree = "<group>"; };
+		E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTableViewController.swift; sourceTree = "<group>"; };
 		E5818577225110B6002148A0 /* AutoPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E581857A225110B6002148A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E581857C225110B6002148A0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -60,11 +62,12 @@
 			children = (
 				E581857C225110B6002148A0 /* MainViewController.swift */,
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
+				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
+				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
 				E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */,
 				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
 				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
-				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
-				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
+				E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -90,8 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				E581857E225110B6002148A0 /* Main.storyboard */,
-				E56B2DB12278843100CE3B65 /* ViewController */,
 				E584713E22773F45001E4534 /* Model */,
+				E56B2DB12278843100CE3B65 /* ViewController */,
 				E5A31CA82266C07D0047233B /* Cell */,
 				E58F061B2256F1FF00D84219 /* AutoPlan.entitlements */,
 				E5818589225110B7002148A0 /* Info.plist */,
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5CAD72922543AEE00936D9D /* TaskTableViewCell.swift in Sources */,
+				E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */,
 				E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */,
 				E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */,
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
@@ -249,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -310,6 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

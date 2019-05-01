@@ -11,56 +11,15 @@ import UIKit
 class AddEditTaskTableViewController: UITableViewController {
     
     let context = AppDelegate.viewContext
-    
     var task: Task? = nil
     var currentProject: Project? = nil
-
-    @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    
-    @IBOutlet weak var titleTextField: UITextField!
-    
-    @IBOutlet weak var notesTextView: UITextView!
-    
-    @IBOutlet weak var deferDateLabel: UILabel!
-    @IBOutlet weak var deferDatePicker: UIDatePicker!
-    @IBOutlet weak var dueDateLabel: UILabel!
-    @IBOutlet weak var dueDatePicker: UIDatePicker!
-    
-    @IBOutlet weak var durationTimeLabel: UILabel!
-    @IBOutlet weak var durationTimePicker: UIDatePicker!
-    
-    @IBOutlet weak var projectLabel: UILabel!
-    
-    @IBAction func textEditingChanged(_ sender: UITextField) {
-        updateDoneButtonState()
-    }
-    
-    @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
-        if(deferDatePicker.date > dueDatePicker.date) {
-            dueDatePicker.date = deferDatePicker.date
-        }
-        updateDateTimeLabel()
-    }
-    
-    @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
-        if(dueDatePicker.date < deferDatePicker.date) {
-            deferDatePicker.date = dueDatePicker.date
-        }
-        updateDateTimeLabel()
-    }
-    
-    @IBAction func durationTimePickerValueChanged(_ sender: UIDatePicker) {
-        updateDateTimeLabel()
-    }
-    
+    var prerequisiteTasks = [Task]()
+    var dependentsTasks = [Task]()
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
-    
     let projectCellIndexPath = IndexPath(row: 0, section: 2)
-    
     let notesTextViewIndexPath = IndexPath(row: 0, section: 3)
-    
     var isDeferDatePickerShown: Bool = false {
         didSet {
             deferDatePicker.isHidden = !isDeferDatePickerShown
@@ -71,52 +30,53 @@ class AddEditTaskTableViewController: UITableViewController {
             dueDatePicker.isHidden = !isDueDatePickerShown
         }
     }
-    
     var isDurationTimePickerShown: Bool = false {
         didSet {
             durationTimePicker.isHidden = !isDurationTimePickerShown
         }
     }
-    
-    var isProjectSelected: Bool = false
-    
     var durationMinutes: Int {
         return Int(durationTimePicker.countDownDuration/60)
     }
-    
-    func updateDoneButtonState() {
-        let text = titleTextField.text ?? ""
-        doneBarButton.isEnabled = !text.isEmpty
-    }
-
-    func updateDateTimeLabel() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        
-        deferDateLabel.text = dateFormatter.string(from: deferDatePicker.date)
-        dueDateLabel.text = dateFormatter.string(from: dueDatePicker.date)
-        
-        durationTimeLabel.text = String(format:"%d mins", durationMinutes)
+    var isProjectSelected: Bool {
+        return currentProject != nil
     }
     
-    func updateSelectedProjectState() {
-        if currentProject == nil {
-            isProjectSelected = false
-            projectLabel.text = "None"
-        } else {
-            projectLabel.text = currentProject?.title
-            isProjectSelected = true
+    // MARK: - IB
+    
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var deferDateLabel: UILabel!
+    @IBOutlet weak var deferDatePicker: UIDatePicker!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var durationTimeLabel: UILabel!
+    @IBOutlet weak var durationTimePicker: UIDatePicker!
+    @IBOutlet weak var projectLabel: UILabel!
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateDoneButtonState()
+    }
+    @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(deferDatePicker.date > dueDatePicker.date) {
+            dueDatePicker.date = deferDatePicker.date
         }
+        updateDateLabel()
+    }
+    @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
+        if(dueDatePicker.date < deferDatePicker.date) {
+            deferDatePicker.date = dueDatePicker.date
+        }
+        updateDateLabel()
+    }
+    @IBAction func durationTimePickerValueChanged(_ sender: UIDatePicker) {
+        updateTimeLabel()
     }
     
-    func updateTableView() {
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
+    // MARK: - View Life Circle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Load data
         if let task = task {
             titleTextField.text = task.title
@@ -124,19 +84,44 @@ class AddEditTaskTableViewController: UITableViewController {
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
             durationTimePicker.countDownDuration = TimeInterval(task.duration*60)
+            
             currentProject = task.project
-            projectLabel.text = task.project?.title
+            prerequisiteTasks = task.prerequisites?.allObjects as! [Task]
+            dependentsTasks = task.dependents?.allObjects as! [Task]
         } else {
             durationTimePicker.countDownDuration = 25*60
         }
-        
-        updateDateTimeLabel()
-        updateDoneButtonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateSelectedProjectState()
-        updateTableView()
+        updateUI()
+    }
+    
+    func updateUI() {
+        updateDoneButtonState()
+        updateDateLabel()
+        updateTimeLabel()
+        updateProjectLabel()
+    }
+    
+    func updateDoneButtonState() {
+        let text = titleTextField.text ?? ""
+        doneBarButton.isEnabled = !text.isEmpty
+    }
+    
+    func updateDateLabel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        deferDateLabel.text = dateFormatter.string(from: deferDatePicker.date)
+        dueDateLabel.text = dateFormatter.string(from: dueDatePicker.date)
+    }
+    
+    func updateTimeLabel() {
+        durationTimeLabel.text = String(format:"%d mins", durationMinutes)
+    }
+    
+    func updateProjectLabel() {
+        projectLabel.text = isProjectSelected ? currentProject?.title : "None"
     }
     
     // MARK: - Table view
@@ -144,25 +129,28 @@ class AddEditTaskTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         view.endEditing(true)   // Hide Keyboard
-        // Switch DatePicker
+        // Toggle DatePicker
         switch (indexPath.section, indexPath.row) {
         case (deferDatePickerCellIndexPath.section, deferDatePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = !isDeferDatePickerShown
             isDueDatePickerShown = false
             isDurationTimePickerShown = false
-            updateTableView()
+            tableView.beginUpdates()
+            tableView.endUpdates()
             
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = !isDueDatePickerShown
             isDurationTimePickerShown = false
-            updateTableView()
+            tableView.beginUpdates()
+            tableView.endUpdates()
             
         case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = false
             isDurationTimePickerShown = !isDurationTimePickerShown
-            updateTableView()
+            tableView.beginUpdates()
+            tableView.endUpdates()
         
         default:
             break
@@ -181,7 +169,8 @@ class AddEditTaskTableViewController: UITableViewController {
         case (durationTimePickerCellIndexPath):
             return isDurationTimePickerShown ? 216.0 : 0.0
         
-        case [projectCellIndexPath.section, projectCellIndexPath.row + 1], [projectCellIndexPath.section, projectCellIndexPath.row + 2]:
+        case [projectCellIndexPath.section, projectCellIndexPath.row + 1],
+             [projectCellIndexPath.section, projectCellIndexPath.row + 2]:
             return isProjectSelected ? 44.0 : 0.0
             
         case (notesTextViewIndexPath):
@@ -198,7 +187,8 @@ class AddEditTaskTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "taskDoneUnwind" {
+        switch segue.identifier {
+        case "taskDoneUnwind":
             if task == nil {
                 task = Task(context: context)
             }
@@ -208,11 +198,21 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.deferDate = deferDatePicker.date
             task?.duration = Int16(durationMinutes)
             task?.project = currentProject
-        }
-        
-        if segue.identifier == "selectProject" {
+        case "SelectProject":
             let selectProjectViewController = segue.destination as! SelectProjectTableViewController
             selectProjectViewController.selectedProject = currentProject
+        case "SelectDependentTasks":
+            let selectTaskViewController = segue.destination as! SelectTaskTableViewController
+            selectTaskViewController.sourceProject = currentProject
+            selectTaskViewController.selectedTasks = dependentsTasks
+            selectTaskViewController.identifier = "SelectDependentTasks"
+        case "SelectPrerequisiteTasks":
+            let selectTaskViewController = segue.destination as! SelectTaskTableViewController
+            selectTaskViewController.sourceProject = currentProject
+            selectTaskViewController.selectedTasks = prerequisiteTasks
+            selectTaskViewController.identifier = "SelectPrerequisiteTasks"
+        default:
+            break
         }
     }
 

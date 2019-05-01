@@ -41,6 +41,8 @@
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="actions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Action" inverseName="task" inverseEntity="Action" syncable="YES"/>
+        <relationship name="dependents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="prerequisites" inverseEntity="Task" syncable="YES"/>
+        <relationship name="prerequisites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="dependents" inverseEntity="Task" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
@@ -49,6 +51,6 @@
         <element name="Event" positionX="-786.9609375" positionY="-304.8515625" width="128" height="148"/>
         <element name="Project" positionX="-1160.2734375" positionY="-291.15625" width="128" height="118"/>
         <element name="Tag" positionX="-786.32421875" positionY="-82.31640625" width="128" height="60"/>
-        <element name="Task" positionX="-968.59765625" positionY="-430.15234375" width="128" height="163"/>
+        <element name="Task" positionX="-968.59765625" positionY="-430.15234375" width="128" height="193"/>
     </elements>
 </model>

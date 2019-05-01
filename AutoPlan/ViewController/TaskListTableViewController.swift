@@ -158,6 +158,12 @@ class TaskListTableViewController: UITableViewController {
             let addEditTaskTableViewController = navController.topViewController as! AddEditTaskTableViewController
             addEditTaskTableViewController.task = task
         }
+        
+        if segue.identifier == "AddTask" {
+            let navController = segue.destination as! UINavigationController
+            let addEditTaskTableViewController = navController.topViewController as! AddEditTaskTableViewController
+            addEditTaskTableViewController.currentProject = sourceProject
+        }
     }
 
     @IBAction func unwindToInbox(segue: UIStoryboardSegue) {
