@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "TaskTableViewController.prepare(for:sender:):TaskTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "task">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TodayTableViewController.tableView(_:commit:forRowAt:):TodayTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,18 +19,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TodayTableViewController.tableView(_:numberOfRowsInSection:):TodayTableViewController.swift">
+         contextName = "AddEditTaskTableViewController.viewDidLoad():AddEditTaskTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "tasks">
+               value = "task.duration">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TaskTableViewController.prepare(for:sender:):TaskTableViewController.swift">
+         contextName = "TodayTableViewController.tableView(_:numberOfRowsInSection:):TodayTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "task">
+               value = "tasks">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

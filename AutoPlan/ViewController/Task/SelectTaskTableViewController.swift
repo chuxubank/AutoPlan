@@ -12,10 +12,7 @@ import CoreData
 class SelectTaskTableViewController: UITableViewController {
 
     let context = AppDelegate.viewContext
-    var sourceProject: Project? = nil
-    var tasks: [Task] {
-        return sourceProject?.tasks?.allObjects as! [Task]
-    }
+    var tasks = [Task]()
     var selectedTasks = [Task]()
     var identifier = ""
     
@@ -23,6 +20,7 @@ class SelectTaskTableViewController: UITableViewController {
         if isMovingFromParent {
             let navController = parent as! UINavigationController
             let addEditTaskTableViewController = navController.topViewController as! AddEditTaskTableViewController
+            selectedTasks = []
             for i in 0..<tasks.count {
                 let cell = tableView.cellForRow(at: [0,i])
                 if cell?.accessoryType == .checkmark {

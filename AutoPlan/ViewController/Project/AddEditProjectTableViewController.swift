@@ -63,9 +63,9 @@ class AddEditProjectTableViewController: UITableViewController {
         if project == nil {
             project = Project(context: context)
         }
-        
         project!.title = titleTextField.text ?? ""
         project?.notes = notesTextView.text ?? ""
+        try? context.save()
     }
 
 }

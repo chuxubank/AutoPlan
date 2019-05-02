@@ -13,8 +13,16 @@ class AddEditTaskTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     var task: Task? = nil
     var currentProject: Project? = nil
-    var prerequisiteTasks = [Task]()
-    var dependentsTasks = [Task]()
+    var prerequisiteTasks = [Task]() {
+        didSet {
+            updateRelatedTaskLabel()
+        }
+    }
+    var dependentsTasks = [Task]() {
+        didSet {
+            updateRelatedTaskLabel()
+        }
+    }
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
@@ -54,6 +62,8 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBOutlet weak var durationTimeLabel: UILabel!
     @IBOutlet weak var durationTimePicker: UIDatePicker!
     @IBOutlet weak var projectLabel: UILabel!
+    @IBOutlet weak var prerequisitesLabel: UILabel!
+    @IBOutlet weak var dependentsLabel: UILabel!
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateDoneButtonState()
     }
@@ -102,6 +112,7 @@ class AddEditTaskTableViewController: UITableViewController {
         updateDateLabel()
         updateTimeLabel()
         updateProjectLabel()
+        updateRelatedTaskLabel()
     }
     
     func updateDoneButtonState() {
@@ -122,6 +133,22 @@ class AddEditTaskTableViewController: UITableViewController {
     
     func updateProjectLabel() {
         projectLabel.text = isProjectSelected ? currentProject?.title : "None"
+    }
+    
+    func updateRelatedTaskLabel() {
+        prerequisitesLabel.text = getTaskListTitle(with: prerequisiteTasks)
+        dependentsLabel.text = getTaskListTitle(with: dependentsTasks)
+    }
+    
+    func getTaskListTitle(with taskList: [Task]) -> String {
+        switch taskList.count {
+        case 1:
+            return taskList.first!.title!
+        case 2...taskList.count + 2:
+            return taskList.first!.title! + " ..."
+        default:
+            return "None"
+        }
     }
     
     // MARK: - Table view
@@ -196,21 +223,48 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.notes = notesTextView.text ?? ""
             task?.dueDate = dueDatePicker.date
             task?.deferDate = deferDatePicker.date
-            task?.duration = Int16(durationMinutes)
+            task?.duration = Int32(durationMinutes)
             task?.project = currentProject
+            // TODO: Set subtract
+            task?.removeFromPrerequisites(task!.prerequisites!)
+            task?.addToPrerequisites(NSSet(array: prerequisiteTasks))
+            task?.removeFromDependents(task!.dependents!)
+            task?.addToDependents(NSSet(array: dependentsTasks))
+            try? context.save()
+        
         case "SelectProject":
             let selectProjectViewController = segue.destination as! SelectProjectTableViewController
             selectProjectViewController.selectedProject = currentProject
-        case "SelectDependentTasks":
-            let selectTaskViewController = segue.destination as! SelectTaskTableViewController
-            selectTaskViewController.sourceProject = currentProject
-            selectTaskViewController.selectedTasks = dependentsTasks
-            selectTaskViewController.identifier = "SelectDependentTasks"
+            prerequisiteTasks = []
+            dependentsTasks = []
+        
         case "SelectPrerequisiteTasks":
             let selectTaskViewController = segue.destination as! SelectTaskTableViewController
-            selectTaskViewController.sourceProject = currentProject
+            var tasks = currentProject?.tasks as! Set<Task>
+            for dependent in dependentsTasks {
+                tasks.subtract(dependent.getAllDependents())
+                tasks.remove(dependent)
+            }
+            if task != nil {
+                tasks.remove(task!)
+            }
+            selectTaskViewController.tasks = Array(tasks)
             selectTaskViewController.selectedTasks = prerequisiteTasks
             selectTaskViewController.identifier = "SelectPrerequisiteTasks"
+            
+        case "SelectDependentTasks":
+            let selectTaskViewController = segue.destination as! SelectTaskTableViewController
+            var tasks = currentProject?.tasks as! Set<Task>
+            for prerequisite in prerequisiteTasks {
+                tasks.subtract(prerequisite.getAllPrerequisites())
+                tasks.remove(prerequisite)
+            }
+            if task != nil {
+                tasks.remove(task!)
+            }
+            selectTaskViewController.tasks = Array(tasks)
+            selectTaskViewController.selectedTasks = dependentsTasks
+            selectTaskViewController.identifier = "SelectDependentTasks"
         default:
             break
         }
@@ -218,5 +272,37 @@ class AddEditTaskTableViewController: UITableViewController {
 
     @IBAction func unwindToTask(segue: UIStoryboardSegue) {
         
+    }
+}
+
+extension Task {
+    func getAllPrerequisites() -> Set<Task> {
+        let selfPrerequisites = self.prerequisites as! Set<Task>
+        if selfPrerequisites.isEmpty {
+            return []
+        } else {
+            var childPrerequisites = Set<Task>()
+            for prerequisite in selfPrerequisites {
+                for task in prerequisite.getAllPrerequisites() {
+                    childPrerequisites.insert(task)
+                }
+            }
+            return childPrerequisites.union(selfPrerequisites)
+        }
+    }
+    
+    func getAllDependents() -> Set<Task> {
+        let selfDependents = self.dependents?.allObjects as! [Task]
+        if selfDependents.isEmpty {
+            return []
+        } else {
+            var childDependents = Set<Task>()
+            for dependent in selfDependents {
+                for task in dependent.getAllPrerequisites() {
+                    childDependents.insert(task)
+                }
+            }
+            return childDependents.union(selfDependents)
+        }
     }
 }

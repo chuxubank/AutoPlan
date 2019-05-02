@@ -57,17 +57,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E5340AA32279DD6000C5C781 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */,
+				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
+				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
+				E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		E5340AA42279DD8000C5C781 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
+				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
 		E56B2DB12278843100CE3B65 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				E581857C225110B6002148A0 /* MainViewController.swift */,
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
-				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
-				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
-				E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */,
-				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
-				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
-				E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */,
+				E5340AA42279DD8000C5C781 /* Project */,
+				E5340AA32279DD6000C5C781 /* Task */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

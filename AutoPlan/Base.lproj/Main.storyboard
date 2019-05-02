@@ -346,7 +346,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="eHp-P6-Ioa" userLabel="Duration Picker">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHp-P6-Ioa" userLabel="Duration Picker">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="215.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="575863853.18894005">
                                                         <!--2019-04-02 02:10:53 +0000-->
@@ -498,12 +498,14 @@
                     <connections>
                         <outlet property="deferDateLabel" destination="rgp-5m-SkU" id="lqA-MJ-gjm"/>
                         <outlet property="deferDatePicker" destination="gUh-m8-Z6P" id="Rri-Pe-nIv"/>
+                        <outlet property="dependentsLabel" destination="SNH-yC-cCe" id="bSl-Mt-ubr"/>
                         <outlet property="doneBarButton" destination="v6S-HE-M9u" id="Tbn-sZ-R1c"/>
                         <outlet property="dueDateLabel" destination="YCa-8f-iST" id="Zjc-CT-mBN"/>
                         <outlet property="dueDatePicker" destination="Q8D-QY-RPG" id="uCV-Hh-eiA"/>
                         <outlet property="durationTimeLabel" destination="YNp-6J-1Os" id="oG6-rF-Nwc"/>
                         <outlet property="durationTimePicker" destination="eHp-P6-Ioa" id="3GA-PC-6sp"/>
                         <outlet property="notesTextView" destination="HZB-IW-jZp" id="UoW-ur-zjP"/>
+                        <outlet property="prerequisitesLabel" destination="9sv-dX-jIi" id="Npl-yE-wEB"/>
                         <outlet property="projectLabel" destination="6Z6-Hl-E4b" id="XeQ-Nj-L3B"/>
                         <outlet property="titleTextField" destination="Atr-t7-qis" id="RgT-wW-xtl"/>
                     </connections>
