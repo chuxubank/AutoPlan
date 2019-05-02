@@ -13,16 +13,8 @@ class AddEditTaskTableViewController: UITableViewController {
     let context = AppDelegate.viewContext
     var task: Task? = nil
     var currentProject: Project? = nil
-    var prerequisiteTasks = [Task]() {
-        didSet {
-            updateRelatedTaskLabel()
-        }
-    }
-    var dependentsTasks = [Task]() {
-        didSet {
-            updateRelatedTaskLabel()
-        }
-    }
+    var prerequisiteTasks = [Task]()
+    var dependentsTasks = [Task]()
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
@@ -128,7 +120,7 @@ class AddEditTaskTableViewController: UITableViewController {
     }
     
     func updateTimeLabel() {
-        durationTimeLabel.text = String(format:"%d mins", durationMinutes)
+        durationTimeLabel.text = String(format:"%d hour %d min", durationMinutes/60, durationMinutes%60)
     }
     
     func updateProjectLabel() {
