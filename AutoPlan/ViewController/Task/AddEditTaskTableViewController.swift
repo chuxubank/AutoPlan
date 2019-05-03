@@ -17,7 +17,8 @@ class AddEditTaskTableViewController: UITableViewController {
     var dependentsTasks = [Task]()
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
-    let durationTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
+    let costTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
+    let splitUnitCellIndexPath = IndexPath(row: 7, section: 1)
     let projectCellIndexPath = IndexPath(row: 0, section: 2)
     let notesTextViewIndexPath = IndexPath(row: 0, section: 3)
     var isDeferDatePickerShown: Bool = false {
@@ -32,11 +33,14 @@ class AddEditTaskTableViewController: UITableViewController {
     }
     var isDurationTimePickerShown: Bool = false {
         didSet {
-            durationTimePicker.isHidden = !isDurationTimePickerShown
+            costTimePicker.isHidden = !isDurationTimePickerShown
         }
     }
-    var durationMinutes: Int {
-        return Int(durationTimePicker.countDownDuration/60)
+    var costMinutes: Int {
+        return Int(costTimePicker.countDownDuration/60)
+    }
+    var isSplitEnable: Bool {
+        return splitCountStepper.value != 1
     }
     var isProjectSelected: Bool {
         return currentProject != nil
@@ -51,12 +55,16 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBOutlet weak var deferDatePicker: UIDatePicker!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
-    @IBOutlet weak var durationTimeLabel: UILabel!
-    @IBOutlet weak var durationTimePicker: UIDatePicker!
+    @IBOutlet weak var costTimeTitleLabel: UILabel!
+    @IBOutlet weak var costTimeLabel: UILabel!
+    @IBOutlet weak var costTimePicker: UIDatePicker!
+    @IBOutlet weak var splitCountTextField: UITextField!
+    @IBOutlet weak var splitCountStepper: UIStepper!
+    @IBOutlet weak var splitUnitTextField: UITextField!
     @IBOutlet weak var projectLabel: UILabel!
     @IBOutlet weak var prerequisitesLabel: UILabel!
     @IBOutlet weak var dependentsLabel: UILabel!
-    @IBAction func textEditingChanged(_ sender: UITextField) {
+    @IBAction func titleTextFieldEditingChanged(_ sender: UITextField) {
         updateDoneButtonState()
     }
     @IBAction func deferDatePickerValueChanged(_ sender: UIDatePicker) {
@@ -74,6 +82,15 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBAction func durationTimePickerValueChanged(_ sender: UIDatePicker) {
         updateTimeLabel()
     }
+    @IBAction func splitCountTextFieldEditingChanged(_ sender: Any) {
+        splitCountStepper.value = Double(splitCountTextField.text!) ?? 1
+    }
+    @IBAction func splitCountTextFieldEditingDidEnd(_ sender: UITextField) {
+        updateSplitCountTexts()
+    }
+    @IBAction func splitCountStepperValueChanged(_ sender: UIStepper) {
+        updateSplitCountTexts()
+    }
     
     // MARK: - View Life Circle
     
@@ -85,13 +102,12 @@ class AddEditTaskTableViewController: UITableViewController {
             notesTextView.text = task.notes
             deferDatePicker.date = task.deferDate ?? Date()
             dueDatePicker.date = task.dueDate ?? Date()
-            durationTimePicker.countDownDuration = TimeInterval(task.duration*60)
-            
+            costTimePicker.countDownDuration = TimeInterval(task.costMinutes*60)
             currentProject = task.project
             prerequisiteTasks = task.prerequisites?.allObjects as! [Task]
             dependentsTasks = task.dependents?.allObjects as! [Task]
         } else {
-            durationTimePicker.countDownDuration = 25*60
+            costTimePicker.countDownDuration = 25*60
         }
     }
     
@@ -105,6 +121,7 @@ class AddEditTaskTableViewController: UITableViewController {
         updateTimeLabel()
         updateProjectLabel()
         updateRelatedTaskLabel()
+        updateSplitCountTexts()
     }
     
     func updateDoneButtonState() {
@@ -120,7 +137,13 @@ class AddEditTaskTableViewController: UITableViewController {
     }
     
     func updateTimeLabel() {
-        durationTimeLabel.text = String(format:"%d hour %d min", durationMinutes/60, durationMinutes%60)
+        costTimeLabel.text = String(format:"%d hour %d min", costMinutes/60, costMinutes%60)
+    }
+    
+    func updateSplitCountTexts() {
+        splitCountTextField.text = String(Int(splitCountStepper.value))
+        costTimeTitleLabel.text = isSplitEnable ? "Estimated Unit Cost" : "Estimated Cost"
+        updateTableView()
     }
     
     func updateProjectLabel() {
@@ -143,6 +166,11 @@ class AddEditTaskTableViewController: UITableViewController {
         }
     }
     
+    func updateTableView() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     // MARK: - Table view
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -154,22 +182,19 @@ class AddEditTaskTableViewController: UITableViewController {
             isDeferDatePickerShown = !isDeferDatePickerShown
             isDueDatePickerShown = false
             isDurationTimePickerShown = false
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            updateTableView()
             
         case (dueDatePickerCellIndexPath.section, dueDatePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = !isDueDatePickerShown
             isDurationTimePickerShown = false
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            updateTableView()
             
-        case (durationTimePickerCellIndexPath.section, durationTimePickerCellIndexPath.row - 1):
+        case (costTimePickerCellIndexPath.section, costTimePickerCellIndexPath.row - 1):
             isDeferDatePickerShown = false
             isDueDatePickerShown = false
             isDurationTimePickerShown = !isDurationTimePickerShown
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            updateTableView()
         
         default:
             break
@@ -179,15 +204,18 @@ class AddEditTaskTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Define Date Picker height
         switch (indexPath) {
-        case (deferDatePickerCellIndexPath):
+        case deferDatePickerCellIndexPath:
             return isDeferDatePickerShown ? 216.0 : 0.0
         
-        case (dueDatePickerCellIndexPath):
+        case dueDatePickerCellIndexPath:
             return isDueDatePickerShown ? 216.0 : 0.0
         
-        case (durationTimePickerCellIndexPath):
+        case costTimePickerCellIndexPath:
             return isDurationTimePickerShown ? 216.0 : 0.0
         
+        case splitUnitCellIndexPath:
+            return isSplitEnable ? 44.0 : 0.0
+            
         case [projectCellIndexPath.section, projectCellIndexPath.row + 1],
              [projectCellIndexPath.section, projectCellIndexPath.row + 2]:
             return isProjectSelected ? 44.0 : 0.0
@@ -215,7 +243,7 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.notes = notesTextView.text ?? ""
             task?.dueDate = dueDatePicker.date
             task?.deferDate = deferDatePicker.date
-            task?.duration = Int32(durationMinutes)
+            task?.costMinutes = Int32(costMinutes)
             task?.project = currentProject
             // TODO: Set subtract
             task?.removeFromPrerequisites(task!.prerequisites!)

@@ -82,8 +82,7 @@ class SelectProjectTableViewController: UITableViewController {
             let row = tableView.indexPathForSelectedRow!.row
             selectedProject = row == 0 ? nil : projects[row]
             addEditTaskViewController.currentProject = selectedProject
-            addEditTaskViewController.tableView.beginUpdates()
-            addEditTaskViewController.tableView.endUpdates()
+            addEditTaskViewController.updateTableView()
         }
     }
 
