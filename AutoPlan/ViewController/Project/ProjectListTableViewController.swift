@@ -41,11 +41,10 @@ class ProjectListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectTableViewCell
         
         let project = projects[indexPath.row]
-        cell.textLabel?.text = project.title
-        cell.detailTextLabel?.text = project.notes
+        cell.update(with: project)
         return cell
     }
 

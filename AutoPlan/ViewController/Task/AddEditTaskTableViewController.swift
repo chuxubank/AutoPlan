@@ -290,39 +290,7 @@ class AddEditTaskTableViewController: UITableViewController {
         }
     }
 
-    @IBAction func unwindToTask(segue: UIStoryboardSegue) {
+    @IBAction func unwindToAETask(segue: UIStoryboardSegue) {
         
-    }
-}
-
-extension Task {
-    func getAllPrerequisites() -> Set<Task> {
-        let selfPrerequisites = self.prerequisites as! Set<Task>
-        if selfPrerequisites.isEmpty {
-            return []
-        } else {
-            var childPrerequisites = Set<Task>()
-            for prerequisite in selfPrerequisites {
-                for task in prerequisite.getAllPrerequisites() {
-                    childPrerequisites.insert(task)
-                }
-            }
-            return childPrerequisites.union(selfPrerequisites)
-        }
-    }
-    
-    func getAllDependents() -> Set<Task> {
-        let selfDependents = self.dependents?.allObjects as! [Task]
-        if selfDependents.isEmpty {
-            return []
-        } else {
-            var childDependents = Set<Task>()
-            for dependent in selfDependents {
-                for task in dependent.getAllPrerequisites() {
-                    childDependents.insert(task)
-                }
-            }
-            return childDependents.union(selfDependents)
-        }
     }
 }

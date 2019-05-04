@@ -11,6 +11,7 @@
 		E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565DF352251929D00B2531D /* TodayTableViewController.swift */; };
 		E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */; };
 		E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */; };
+		E57BA476227C65C30092CFE5 /* UICircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BA475227C65C30092CFE5 /* UICircleView.swift */; };
 		E581857B225110B6002148A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E581857A225110B6002148A0 /* AppDelegate.swift */; };
 		E581857D225110B6002148A0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E581857C225110B6002148A0 /* MainViewController.swift */; };
 		E5818580225110B6002148A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E581857E225110B6002148A0 /* Main.storyboard */; };
@@ -19,16 +20,22 @@
 		E59316912252E7CE00936CB5 /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */; };
 		E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */; };
 		E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */; };
-		E5A31CA52266A0110047233B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A31CA42266A0110047233B /* Media.xcassets */; };
 		E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */; };
+		E5B41D7B227C3C2300A88BA6 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B41D7A227C3C2300A88BA6 /* ProjectTableViewCell.swift */; };
 		E5CAD72922543AEE00936D9D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */; };
+		E5E5AA41227D6DC3007B1FFD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5E5AA40227D6DC3007B1FFD /* Media.xcassets */; };
+		E5E8C65A227D380100D354C6 /* SelectColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8C659227D380100D354C6 /* SelectColorTableViewController.swift */; };
+		E5E8C65C227D40A300D354C6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8C65B227D40A300D354C6 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		273384AFBCD62B04DBDE4427 /* Pods-AutoPlan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.release.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.release.xcconfig"; sourceTree = "<group>"; };
+		CC704CEEA68780D1B77718ED /* Pods-AutoPlan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.debug.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.debug.xcconfig"; sourceTree = "<group>"; };
 		E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProjectTableViewController.swift; sourceTree = "<group>"; };
 		E565DF352251929D00B2531D /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		E565DF3822519CCF00B2531D /* AutoPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoPlan.xcdatamodel; sourceTree = "<group>"; };
 		E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTableViewController.swift; sourceTree = "<group>"; };
+		E57BA475227C65C30092CFE5 /* UICircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircleView.swift; sourceTree = "<group>"; };
 		E5818577225110B6002148A0 /* AutoPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E581857A225110B6002148A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E581857C225110B6002148A0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -40,9 +47,12 @@
 		E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTaskTableViewController.swift; sourceTree = "<group>"; };
 		E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListTableViewController.swift; sourceTree = "<group>"; };
-		E5A31CA42266A0110047233B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditProjectTableViewController.swift; sourceTree = "<group>"; };
+		E5B41D7A227C3C2300A88BA6 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		E5E5AA40227D6DC3007B1FFD /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E5E8C659227D380100D354C6 /* SelectColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorTableViewController.swift; sourceTree = "<group>"; };
+		E5E8C65B227D40A300D354C6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88163E4ADABF9782D0363AC0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC704CEEA68780D1B77718ED /* Pods-AutoPlan.debug.xcconfig */,
+				273384AFBCD62B04DBDE4427 /* Pods-AutoPlan.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E5340AA32279DD6000C5C781 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */,
 				E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */,
 				E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */,
 				E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */,
@@ -71,8 +91,10 @@
 		E5340AA42279DD8000C5C781 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				E5B41D7A227C3C2300A88BA6 /* ProjectTableViewCell.swift */,
 				E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */,
 				E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */,
+				E5E8C659227D380100D354C6 /* SelectColorTableViewController.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -88,12 +110,21 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		E57BA474227C65910092CFE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E57BA475227C65C30092CFE5 /* UICircleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E581856E225110B6002148A0 = {
 			isa = PBXGroup;
 			children = (
 				E5818579225110B6002148A0 /* AutoPlan */,
 				E5818578225110B6002148A0 /* Products */,
 				E58F061C2256F1FF00D84219 /* Frameworks */,
+				88163E4ADABF9782D0363AC0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,8 +141,8 @@
 			children = (
 				E581857E225110B6002148A0 /* Main.storyboard */,
 				E584713E22773F45001E4534 /* Model */,
+				E57BA474227C65910092CFE5 /* View */,
 				E56B2DB12278843100CE3B65 /* ViewController */,
-				E5A31CA82266C07D0047233B /* Cell */,
 				E58F061B2256F1FF00D84219 /* AutoPlan.entitlements */,
 				E5818589225110B7002148A0 /* Info.plist */,
 				E5A31CA92266C0D50047233B /* Supporting Files */,
@@ -123,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */,
+				E5E8C65B227D40A300D354C6 /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -135,18 +167,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E5A31CA82266C07D0047233B /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E5CAD72822543AEE00936D9D /* TaskTableViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		E5A31CA92266C0D50047233B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E5A31CA42266A0110047233B /* Media.xcassets */,
+				E5E5AA40227D6DC3007B1FFD /* Media.xcassets */,
 				E581857A225110B6002148A0 /* AppDelegate.swift */,
 				E5818586225110B7002148A0 /* LaunchScreen.storyboard */,
 			);
@@ -160,6 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E581858C225110B7002148A0 /* Build configuration list for PBXNativeTarget "AutoPlan" */;
 			buildPhases = (
+				C2A2E148BE3FA1EF05B96383 /* [CP] Check Pods Manifest.lock */,
 				E5818573225110B6002148A0 /* Sources */,
 				E5818574225110B6002148A0 /* Frameworks */,
 				E5818575225110B6002148A0 /* Resources */,
@@ -217,12 +242,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5818588225110B7002148A0 /* LaunchScreen.storyboard in Resources */,
-				E5A31CA52266A0110047233B /* Media.xcassets in Resources */,
+				E5E5AA41227D6DC3007B1FFD /* Media.xcassets in Resources */,
 				E5818580225110B6002148A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C2A2E148BE3FA1EF05B96383 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AutoPlan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E5818573225110B6002148A0 /* Sources */ = {
@@ -236,7 +286,11 @@
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
 				E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */,
 				E581857D225110B6002148A0 /* MainViewController.swift in Sources */,
+				E5E8C65C227D40A300D354C6 /* Task.swift in Sources */,
+				E5B41D7B227C3C2300A88BA6 /* ProjectTableViewCell.swift in Sources */,
+				E57BA476227C65C30092CFE5 /* UICircleView.swift in Sources */,
 				E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */,
+				E5E8C65A227D380100D354C6 /* SelectColorTableViewController.swift in Sources */,
 				E581857B225110B6002148A0 /* AppDelegate.swift in Sources */,
 				E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */,
 				E59316912252E7CE00936CB5 /* TaskListTableViewController.swift in Sources */,
@@ -385,6 +439,7 @@
 		};
 		E581858D225110B7002148A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC704CEEA68780D1B77718ED /* Pods-AutoPlan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AutoPlan/AutoPlan.entitlements;
@@ -404,6 +459,7 @@
 		};
 		E581858E225110B7002148A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 273384AFBCD62B04DBDE4427 /* Pods-AutoPlan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AutoPlan/AutoPlan.entitlements;

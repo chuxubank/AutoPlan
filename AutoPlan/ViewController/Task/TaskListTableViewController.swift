@@ -110,7 +110,6 @@ class TaskListTableViewController: UITableViewController {
 
         let task = tasks[indexPath.row]
         cell.update(with: task)
-        cell.showsReorderControl = true
         return cell
     }
 
@@ -167,7 +166,7 @@ class TaskListTableViewController: UITableViewController {
         }
     }
 
-    @IBAction func unwindToInbox(segue: UIStoryboardSegue) {
+    @IBAction func unwindToTaskList(segue: UIStoryboardSegue) {
         
     }
 }
