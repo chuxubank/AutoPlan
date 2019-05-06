@@ -15,10 +15,11 @@ class AddEditTaskTableViewController: UITableViewController {
     var currentProject: Project? = nil
     var prerequisiteTasks = [Task]()
     var dependentsTasks = [Task]()
+    
     let deferDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let dueDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let costTimePickerCellIndexPath = IndexPath(row: 5, section: 1)
-    let splitUnitCellIndexPath = IndexPath(row: 7, section: 1)
+    let splitUnitCellIndexPath = IndexPath(row: 8, section: 1)
     let projectCellIndexPath = IndexPath(row: 0, section: 2)
     let notesTextViewIndexPath = IndexPath(row: 0, section: 3)
     var isDeferDatePickerShown: Bool = false {
@@ -45,6 +46,11 @@ class AddEditTaskTableViewController: UITableViewController {
     var isProjectSelected: Bool {
         return currentProject != nil
     }
+    var energyLevel = 3 {
+        didSet {
+            energyLevelLabel.text = "\(energyLevel)"
+        }
+    }
     
     // MARK: - IB
     
@@ -58,6 +64,11 @@ class AddEditTaskTableViewController: UITableViewController {
     @IBOutlet weak var costTimeTitleLabel: UILabel!
     @IBOutlet weak var costTimeLabel: UILabel!
     @IBOutlet weak var costTimePicker: UIDatePicker!
+    @IBOutlet weak var energyLevelLabel: UILabel!
+    @IBOutlet weak var energyLevelStepper: UIStepper!
+    @IBAction func energyLevelStepperValueChanged(_ sender: UIStepper) {
+        energyLevel = Int(energyLevelStepper.value)
+    }
     @IBOutlet weak var splitCountTextField: UITextField!
     @IBOutlet weak var splitCountStepper: UIStepper!
     @IBOutlet weak var splitUnitTextField: UITextField!
@@ -106,12 +117,15 @@ class AddEditTaskTableViewController: UITableViewController {
             currentProject = task.project
             prerequisiteTasks = task.prerequisites?.allObjects as! [Task]
             dependentsTasks = task.dependents?.allObjects as! [Task]
+            energyLevel = Int(task.energyLevel)
             splitCountStepper.value = Double(task.splitCount)
             if splitCountStepper.value != 1 {
                 splitUnitTextField.text = task.splitUnit
             }
         } else {
             costTimePicker.countDownDuration = 25*60
+            energyLevelStepper.value = 3
+            titleTextField.becomeFirstResponder()
         }
     }
     
@@ -254,6 +268,7 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.addToPrerequisites(NSSet(array: prerequisiteTasks))
             task?.removeFromDependents(task!.dependents!)
             task?.addToDependents(NSSet(array: dependentsTasks))
+            task?.energyLevel = Int16(energyLevel)
             task?.splitCount = Int32(splitCountStepper.value)
             if task?.splitCount != 1 {
                 task?.splitUnit = splitUnitTextField.text

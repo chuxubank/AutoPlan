@@ -38,7 +38,16 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
     func checkMarkTapped(sender: TaskTableViewCell) {
         if let indexPath = tableView.indexPath(for: sender) {
             let task = tasks[indexPath.row]
-            task.isDone = !task.isDone
+            if task.splitCount == 1 {
+                task.isDone = !task.isDone
+            }
+            else {
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let navViewController = sb.instantiateViewController(withIdentifier: "navAEAction") as! UINavigationController
+                let vc = navViewController.topViewController as? AddEditActionTableViewController
+                vc?.task = task
+                present(navViewController, animated: true, completion: nil)
+            }
             tasks[indexPath.row] = task
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }

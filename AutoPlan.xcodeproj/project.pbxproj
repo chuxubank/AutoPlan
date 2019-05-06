@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */; };
+		E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */; };
+		E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D54A227FEADB002C72ED /* PickerLabel.swift */; };
 		E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565DF352251929D00B2531D /* TodayTableViewController.swift */; };
 		E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */; };
 		E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */; };
@@ -32,6 +34,8 @@
 		273384AFBCD62B04DBDE4427 /* Pods-AutoPlan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.release.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.release.xcconfig"; sourceTree = "<group>"; };
 		CC704CEEA68780D1B77718ED /* Pods-AutoPlan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.debug.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.debug.xcconfig"; sourceTree = "<group>"; };
 		E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProjectTableViewController.swift; sourceTree = "<group>"; };
+		E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActionTableViewController.swift; sourceTree = "<group>"; };
+		E536D54A227FEADB002C72ED /* PickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerLabel.swift; sourceTree = "<group>"; };
 		E565DF352251929D00B2531D /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		E565DF3822519CCF00B2531D /* AutoPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoPlan.xcdatamodel; sourceTree = "<group>"; };
 		E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		E56B2DB12278843100CE3B65 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */,
 				E581857C225110B6002148A0 /* MainViewController.swift */,
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
 				E5340AA42279DD8000C5C781 /* Project */,
@@ -113,6 +118,7 @@
 		E57BA474227C65910092CFE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E536D54A227FEADB002C72ED /* PickerLabel.swift */,
 				E57BA475227C65C30092CFE5 /* UICircleView.swift */,
 			);
 			path = View;
@@ -284,6 +290,8 @@
 				E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */,
 				E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */,
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
+				E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */,
+				E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */,
 				E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */,
 				E581857D225110B6002148A0 /* MainViewController.swift in Sources */,
 				E5E8C65C227D40A300D354C6 /* Task.swift in Sources */,
