@@ -8,25 +8,37 @@
 
 import UIKit
 
-class TaskTableViewCell: UITableViewCell {
+@objc protocol TaskCellDelegate: class {
+    func checkMarkTapped(sender: TaskTableViewCell)
+}
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var noteLabel: UILabel!
+class TaskTableViewCell: UITableViewCell {
+    
+    var delegate: TaskCellDelegate?
+    
+    @IBOutlet weak var doneProgressView: UIProgressView!
+    
+    @objc func imageViewTapped() {
+        delegate?.checkMarkTapped(sender: self)
+    }
     
     func update(with task: Task) {
-        titleLabel.text = task.title
-        noteLabel.text = task.notes
+        let color = task.project?.color as? UIColor
+        textLabel?.text = task.title
+        imageView?.image = task.isDone ? UIImage(named: "dot circle") : UIImage(named: "circle")
+        imageView?.tintColor = color
+        doneProgressView.isHidden = task.splitCount == 1
+        doneProgressView.progressTintColor = color
+        doneProgressView.trackTintColor = color?.withAlphaComponent(0.1)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let leadingConstraint = NSLayoutConstraint.init(item: doneProgressView!, attribute: .leading, relatedBy: .equal, toItem: textLabel, attribute: .leading, multiplier: 1.0, constant: 0)
+        self.addConstraints([leadingConstraint])
+        imageView?.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        gesture.numberOfTapsRequired = 1
+        imageView?.addGestureRecognizer(gesture)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

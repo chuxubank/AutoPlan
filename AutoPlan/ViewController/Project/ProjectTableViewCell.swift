@@ -14,7 +14,8 @@ class ProjectTableViewCell: UITableViewCell {
     
     func update(with project: Project) {
         textLabel?.text = project.title
-        doneProgressView.progressTintColor = project.color as? UIColor
-        doneProgressView.trackTintColor = UIColor.gray.withAlphaComponent(0.1)
+        let color = project.color as? UIColor
+        doneProgressView.progressTintColor = color
+        doneProgressView.trackTintColor = color?.withAlphaComponent(0.1)
     }
 }

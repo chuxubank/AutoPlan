@@ -12,7 +12,12 @@ import UIKit
 class UICircleView: UIView {
 
     @IBInspectable
-    var color: UIColor = UIColor.red
+    var color: UIColor = UIColor.red {
+        didSet {
+            setNeedsDisplay()
+            setNeedsLayout()
+        }
+    }
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {

@@ -106,6 +106,10 @@ class AddEditTaskTableViewController: UITableViewController {
             currentProject = task.project
             prerequisiteTasks = task.prerequisites?.allObjects as! [Task]
             dependentsTasks = task.dependents?.allObjects as! [Task]
+            splitCountStepper.value = Double(task.splitCount)
+            if splitCountStepper.value != 1 {
+                splitUnitTextField.text = task.splitUnit
+            }
         } else {
             costTimePicker.countDownDuration = 25*60
         }
@@ -250,6 +254,10 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.addToPrerequisites(NSSet(array: prerequisiteTasks))
             task?.removeFromDependents(task!.dependents!)
             task?.addToDependents(NSSet(array: dependentsTasks))
+            task?.splitCount = Int32(splitCountStepper.value)
+            if task?.splitCount != 1 {
+                task?.splitUnit = splitUnitTextField.text
+            }
             try? context.save()
         
         case "SelectProject":

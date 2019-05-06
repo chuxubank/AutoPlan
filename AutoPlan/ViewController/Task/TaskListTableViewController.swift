@@ -10,14 +10,11 @@ import UIKit
 import CoreData
 import EventKit
 
-class TaskListTableViewController: UITableViewController {
-
+class TaskListTableViewController: UITableViewController, TaskCellDelegate {
+    
     let context = AppDelegate.viewContext
-    
     var store = EKEventStore()
-    
     var tasks = [Task]()
-    
     var sourceProject: Project? = nil
     
     override func viewDidLoad() {
@@ -35,6 +32,15 @@ class TaskListTableViewController: UITableViewController {
             self.title = "Inbox"
         } else {
             self.title = sourceProject!.title
+        }
+    }
+    
+    func checkMarkTapped(sender: TaskTableViewCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            let task = tasks[indexPath.row]
+            task.isDone = !task.isDone
+            tasks[indexPath.row] = task
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
     
@@ -59,10 +65,6 @@ class TaskListTableViewController: UITableViewController {
                     self.loadReminders()
                     self.updateTasks()
                 })
-            } else {
-                DispatchQueue.main.async(execute: {
-//                    self.needPermissionView.fadeIn()
-                })
             }
         })
     }
@@ -77,7 +79,8 @@ class TaskListTableViewController: UITableViewController {
                         task.title = reminder?.title
                         task.notes = reminder?.notes
                         task.dueDate = reminder?.dueDateComponents?.date
-                        try! self.store.remove(reminder!, commit: true)
+                        try? self.store.remove(reminder!, commit: true)
+                        try? self.context.save()
                     }
                 }
             })
@@ -107,9 +110,9 @@ class TaskListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskTableViewCell
-
         let task = tasks[indexPath.row]
         cell.update(with: task)
+        cell.delegate = self
         return cell
     }
 
