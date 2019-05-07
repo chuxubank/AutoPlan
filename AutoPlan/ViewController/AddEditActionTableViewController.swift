@@ -77,6 +77,7 @@ class AddEditActionTableViewController: UITableViewController {
         updateDoneButtonState()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
+        self.title = task?.title
         if let action = action {
             task = action.task
             doneTime = action.doneTime ?? Date()

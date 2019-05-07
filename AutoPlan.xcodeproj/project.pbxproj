@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A483632D0756A3A43FA1CE1 /* Pods_AutoPlan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBCD561F4542F9F0BC65D9C /* Pods_AutoPlan.framework */; };
 		E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */; };
 		E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */; };
 		E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D54A227FEADB002C72ED /* PickerLabel.swift */; };
@@ -21,6 +22,7 @@
 		E58F061E2256F1FF00D84219 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58F061D2256F1FF00D84219 /* HealthKit.framework */; };
 		E59316912252E7CE00936CB5 /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */; };
 		E5931697225333A400936CB5 /* AddEditTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */; };
+		E5A2F63022804E3200F7EA42 /* EnergyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2F62F22804E3200F7EA42 /* EnergyViewController.swift */; };
 		E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */; };
 		E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */; };
 		E5B41D7B227C3C2300A88BA6 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B41D7A227C3C2300A88BA6 /* ProjectTableViewCell.swift */; };
@@ -32,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		273384AFBCD62B04DBDE4427 /* Pods-AutoPlan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.release.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.release.xcconfig"; sourceTree = "<group>"; };
+		8CBCD561F4542F9F0BC65D9C /* Pods_AutoPlan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoPlan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC704CEEA68780D1B77718ED /* Pods-AutoPlan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoPlan.debug.xcconfig"; path = "Target Support Files/Pods-AutoPlan/Pods-AutoPlan.debug.xcconfig"; sourceTree = "<group>"; };
 		E508BC3C226B43F6009BBC31 /* SelectProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProjectTableViewController.swift; sourceTree = "<group>"; };
 		E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActionTableViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		E58F061D2256F1FF00D84219 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E59316902252E7CE00936CB5 /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		E5931696225333A400936CB5 /* AddEditTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTaskTableViewController.swift; sourceTree = "<group>"; };
+		E5A2F62F22804E3200F7EA42 /* EnergyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyViewController.swift; sourceTree = "<group>"; };
 		E5A31CA222669CC90047233B /* ProjectListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListTableViewController.swift; sourceTree = "<group>"; };
 		E5A31CA62266B49C0047233B /* AddEditProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditProjectTableViewController.swift; sourceTree = "<group>"; };
 		E5B41D7A227C3C2300A88BA6 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E58F061E2256F1FF00D84219 /* HealthKit.framework in Frameworks */,
+				0A483632D0756A3A43FA1CE1 /* Pods_AutoPlan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +116,7 @@
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
 				E5340AA42279DD8000C5C781 /* Project */,
 				E5340AA32279DD6000C5C781 /* Task */,
+				E5A2F62F22804E3200F7EA42 /* EnergyViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				E58F061D2256F1FF00D84219 /* HealthKit.framework */,
+				8CBCD561F4542F9F0BC65D9C /* Pods_AutoPlan.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 				E5818573225110B6002148A0 /* Sources */,
 				E5818574225110B6002148A0 /* Frameworks */,
 				E5818575225110B6002148A0 /* Resources */,
+				7BD1208947F9593D8AFE77A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +264,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7BD1208947F9593D8AFE77A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AutoPlan/Pods-AutoPlan-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AAInfographics/AAInfographics.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAInfographics.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AutoPlan/Pods-AutoPlan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C2A2E148BE3FA1EF05B96383 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +323,7 @@
 				E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */,
 				E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */,
 				E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */,
+				E5A2F63022804E3200F7EA42 /* EnergyViewController.swift in Sources */,
 				E581857D225110B6002148A0 /* MainViewController.swift in Sources */,
 				E5E8C65C227D40A300D354C6 /* Task.swift in Sources */,
 				E5B41D7B227C3C2300A88BA6 /* ProjectTableViewCell.swift in Sources */,
