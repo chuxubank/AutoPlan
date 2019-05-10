@@ -14,7 +14,7 @@ class AddEditActionTableViewController: UITableViewController {
     let dateFormatter = DateFormatter()
     
     var action: Action? = nil
-    var task: Task? = nil
+    var sourceTask: Task? = nil
     var doneTime = Date() {
         didSet {
             doneTimeLabel.text =
@@ -30,6 +30,7 @@ class AddEditActionTableViewController: UITableViewController {
     var energyLevel = 3 {
         didSet {
             energyLevelLabel.text = "\(energyLevel)"
+            energyLevelStepper.value = Double(energyLevel)
         }
     }
     var doneUnitCount = 0 {
@@ -37,8 +38,8 @@ class AddEditActionTableViewController: UITableViewController {
             doneUnitCountTextField.text =
                 doneUnitCount == 0 ? "" : "\(doneUnitCount)"
             // TODO: calculate max from all actions
-            if doneUnitCount > Int(task!.splitCount) {
-                doneUnitCount = Int(task!.splitCount)
+            if doneUnitCount > Int(sourceTask!.splitCount) {
+                doneUnitCount = Int(sourceTask!.splitCount)
                 doneUnitCountTextField.text = "\(doneUnitCount)"
             }
         }
@@ -54,7 +55,7 @@ class AddEditActionTableViewController: UITableViewController {
         action?.costMinutes = Int32(costMinutes)
         action?.energyLevel = Int16(energyLevel)
         action?.doneUnitCount = Int32(doneUnitCount)
-        action?.task = task
+        action?.task = sourceTask
         try? context.save()
         dismiss(animated: true, completion: nil)
     }
@@ -77,20 +78,20 @@ class AddEditActionTableViewController: UITableViewController {
         updateDoneButtonState()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        self.title = task?.title
         if let action = action {
-            task = action.task
+            sourceTask = action.task
             doneTime = action.doneTime ?? Date()
             costMinutes = Int(action.costMinutes)
             energyLevel = Int(action.energyLevel)
             doneUnitCount = Int(action.doneUnitCount)
         } else {
             doneTime = Date()
-            costMinutes = Int(task!.costMinutes)
-            energyLevel = Int(task!.energyLevel)
-            doneUnitCountTextField.placeholder = task!.splitUnit!
+            costMinutes = Int(sourceTask!.costMinutes)
+            energyLevel = Int(sourceTask!.energyLevel)
+            doneUnitCountTextField.placeholder = sourceTask!.splitUnit
             doneUnitCountTextField.becomeFirstResponder()
         }
+        self.title = sourceTask?.title
     }
     
     @objc func doneDateTimePickerValueChanged(sender: UIDatePicker) {

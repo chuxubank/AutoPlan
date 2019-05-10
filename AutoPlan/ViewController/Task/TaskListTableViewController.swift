@@ -39,16 +39,30 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
         if let indexPath = tableView.indexPath(for: sender) {
             let task = tasks[indexPath.row]
             if task.splitCount == 1 {
-                task.isDone = !task.isDone
+                if task.isDone {
+                    task.isDone = false
+                    // TODO: Use NSBatchDeleteRequest to delete actions
+                    for action in task.actions! {
+                        context.delete(action as! NSManagedObject)
+                    }
+                } else {
+                    task.isDone = true
+                    let action = Action(context: context)
+                    action.costMinutes = task.costMinutes
+                    action.doneTime = Date()
+                    action.doneUnitCount = 1
+                    action.energyLevel = task.energyLevel
+                    action.task = task
+                }
+                try! context.save()
             }
             else {
                 let sb = UIStoryboard(name: "Main", bundle: nil)
                 let navViewController = sb.instantiateViewController(withIdentifier: "navAEAction") as! UINavigationController
                 let vc = navViewController.topViewController as? AddEditActionTableViewController
-                vc?.task = task
+                vc?.sourceTask = task
                 present(navViewController, animated: true, completion: nil)
             }
-            tasks[indexPath.row] = task
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
@@ -98,7 +112,7 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
     
     func updateTasks() {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
-        let predicate = NSPredicate(format: "project == %@", sourceProject ?? 0)
+        let predicate = NSPredicate(format: "project == %@ && isDone == false", sourceProject ?? 0)
         request.predicate = predicate
         tasks = try! context.fetch(request)
     }

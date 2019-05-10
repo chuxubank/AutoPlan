@@ -25,6 +25,7 @@ class TaskTableViewCell: UITableViewCell {
     func update(with task: Task) {
         let color = task.project?.color as? UIColor
         textLabel?.text = task.title
+        textLabel?.textColor = task.isDone ? UIColor.gray : UIColor.black
         imageView?.image = task.isDone ? UIImage(named: "dot circle") : UIImage(named: "circle")
         imageView?.tintColor = color
         doneProgressView.isHidden = task.splitCount == 1

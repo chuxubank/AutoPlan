@@ -54,7 +54,7 @@ class TodayTableViewController: UITableViewController, EKEventEditViewDelegate {
             
             if accessGranted == true {
                 DispatchQueue.main.async(execute: {
-                    
+                    // ...
                 })
             }
         })
@@ -64,6 +64,17 @@ class TodayTableViewController: UITableViewController, EKEventEditViewDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Events"
+        case 1:
+            return "Next Action"
+        default:
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,7 +90,6 @@ class TodayTableViewController: UITableViewController, EKEventEditViewDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
         
-        // Configure the cell...
         
         return cell
     }

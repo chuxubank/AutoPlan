@@ -34,6 +34,6 @@
     <elements>
         <element name="Action" positionX="-967.34765625" positionY="-85.203125" width="128" height="135"/>
         <element name="Project" positionX="-1160.2734375" positionY="-291.15625" width="128" height="120"/>
-        <element name="Task" positionX="-968.59765625" positionY="-430.15234375" width="128" height="253"/>
+        <element name="Task" positionX="-968.59765625" positionY="-430.15234375" width="128" height="255"/>
     </elements>
 </model>

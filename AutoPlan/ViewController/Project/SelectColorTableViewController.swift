@@ -16,8 +16,22 @@ class SelectColorTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        colors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.brown]
-        colorNames = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown"]
+        colors = [UIColor.init(hexString: "ff3b30"),
+                  UIColor.init(hexString: "ff9500"),
+                  UIColor.init(hexString: "ffcc00"),
+                  UIColor.init(hexString: "4cd964"),
+                  UIColor.init(hexString: "5ac8fa"),
+                  UIColor.init(hexString: "007aff"),
+                  UIColor.init(hexString: "5856d6"),
+                  UIColor.init(hexString: "ff2d55")]
+        colorNames = ["Red",
+                      "Orange",
+                      "Yellow",
+                      "Green",
+                      "Teal Blue",
+                      "Blue",
+                      "Purple",
+                      "Pink"]
     }
     
     // MARK: - Table view data source

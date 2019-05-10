@@ -49,6 +49,7 @@ class AddEditTaskTableViewController: UITableViewController {
     var energyLevel = 3 {
         didSet {
             energyLevelLabel.text = "\(energyLevel)"
+            energyLevelStepper.value = Double(energyLevel)
         }
     }
     
@@ -257,7 +258,8 @@ class AddEditTaskTableViewController: UITableViewController {
             if task == nil {
                 task = Task(context: context)
             }
-            task!.title = titleTextField.text ?? ""
+            task?.isDone = false
+            task?.title = titleTextField.text ?? ""
             task?.notes = notesTextView.text ?? ""
             task?.dueDate = dueDatePicker.date
             task?.deferDate = deferDatePicker.date
@@ -294,6 +296,7 @@ class AddEditTaskTableViewController: UITableViewController {
             selectTaskViewController.tasks = Array(tasks)
             selectTaskViewController.selectedTasks = prerequisiteTasks
             selectTaskViewController.identifier = "SelectPrerequisiteTasks"
+            selectTaskViewController.title = "Select Prerequisite Tasks"
             
         case "SelectDependentTasks":
             let selectTaskViewController = segue.destination as! SelectTaskTableViewController
@@ -308,6 +311,7 @@ class AddEditTaskTableViewController: UITableViewController {
             selectTaskViewController.tasks = Array(tasks)
             selectTaskViewController.selectedTasks = dependentsTasks
             selectTaskViewController.identifier = "SelectDependentTasks"
+            selectTaskViewController.title = "Select Dependent Tasks"
         default:
             break
         }
