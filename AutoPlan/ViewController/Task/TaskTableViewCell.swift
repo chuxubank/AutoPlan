@@ -28,6 +28,7 @@ class TaskTableViewCell: UITableViewCell {
         textLabel?.textColor = task.isDone ? UIColor.gray : UIColor.black
         imageView?.image = task.isDone ? UIImage(named: "dot circle") : UIImage(named: "circle")
         imageView?.tintColor = color
+        doneProgressView.setProgress(Float(task.doneSplitCount) / Float(task.splitCount), animated: true)
         doneProgressView.isHidden = task.splitCount == 1
         doneProgressView.progressTintColor = color
         doneProgressView.trackTintColor = color?.withAlphaComponent(0.1)

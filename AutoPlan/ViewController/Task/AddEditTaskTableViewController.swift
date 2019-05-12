@@ -261,9 +261,10 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.isDone = false
             task?.title = titleTextField.text ?? ""
             task?.notes = notesTextView.text ?? ""
-            task?.dueDate = dueDatePicker.date
-            task?.deferDate = deferDatePicker.date
+            task?.dueDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: dueDatePicker.date)
+            task?.deferDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: deferDatePicker.date)
             task?.costMinutes = Int32(costMinutes)
+            task?.createTime = Date()
             task?.project = currentProject
             // TODO: Set subtract
             task?.removeFromPrerequisites(task!.prerequisites!)
@@ -272,9 +273,7 @@ class AddEditTaskTableViewController: UITableViewController {
             task?.addToDependents(NSSet(array: dependentsTasks))
             task?.energyLevel = Int16(energyLevel)
             task?.splitCount = Int32(splitCountStepper.value)
-            if task?.splitCount != 1 {
-                task?.splitUnit = splitUnitTextField.text
-            }
+            task?.splitUnit = splitUnitTextField.text ?? ""
             try? context.save()
         
         case "SelectProject":

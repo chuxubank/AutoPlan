@@ -37,13 +37,17 @@ class AddEditActionTableViewController: UITableViewController {
         didSet {
             doneUnitCountTextField.text =
                 doneUnitCount == 0 ? "" : "\(doneUnitCount)"
-            // TODO: calculate max from all actions
-            if doneUnitCount > Int(sourceTask!.splitCount) {
-                doneUnitCount = Int(sourceTask!.splitCount)
+            
+            if doneUnitCount > leftUnitCount {
+                doneUnitCount = leftUnitCount
                 doneUnitCountTextField.text = "\(doneUnitCount)"
             }
         }
     }
+    var leftUnitCount: Int {
+        return Int(sourceTask!.splitCount) - sourceTask!.doneSplitCount
+    }
+    
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -57,6 +61,9 @@ class AddEditActionTableViewController: UITableViewController {
         action?.doneUnitCount = Int32(doneUnitCount)
         action?.task = sourceTask
         try? context.save()
+        if leftUnitCount == 0 {
+            sourceTask?.isDone = true
+        }
         dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -130,6 +137,10 @@ class AddEditActionTableViewController: UITableViewController {
         default:
             break
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return String(format: "There are %d %@ left in %@", leftUnitCount, sourceTask!.splitUnit ?? "", sourceTask!.title!)
     }
 
     /*

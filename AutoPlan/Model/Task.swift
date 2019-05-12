@@ -38,4 +38,19 @@ extension Task {
             return childDependents.union(selfDependents)
         }
     }
+    
+    var doneSplitCount: Int {
+        // TODO: - use core data fetched property
+        let actions = self.actions as! Set<Action>
+        var doneSplitCount = 0
+        for action in actions {
+            doneSplitCount += Int(action.doneUnitCount)
+        }
+        return doneSplitCount
+    }
+    
+    var remainMinutes: Int {
+        return Int(self.dueDate!.timeIntervalSinceNow / 60)
+    }
+    
 }

@@ -15,30 +15,83 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
     let context = AppDelegate.viewContext
     var store = EKEventStore()
     var tasks = [Task]()
-    var sourceProject: Project? = nil
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if sourceProject == nil {
-            checkReminderAuthorizationStatus()
+    var sourceProject: Project? {
+        didSet {
+            self.title = sourceProject?.title
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTasks()
-        tableView.reloadData()
-        if sourceProject == nil {
-            self.title = "Inbox"
-        } else {
-            self.title = sourceProject!.title
+        refreshTasks()
+    }
+    
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        refreshTasks()
+    }
+    
+    func requestReminders() {
+        let status = EKEventStore.authorizationStatus(for: .reminder)
+        switch status {
+        case .notDetermined:
+            store.requestAccess(to: .reminder, completion: {
+                (accessGranted: Bool, error: Error?) in
+                if accessGranted == true {
+                    self.fetchReminders()
+                }
+            })
+        case .authorized:
+            fetchReminders()
+        default:
+            break
         }
     }
     
+    func fetchReminders() {
+        let predicate: NSPredicate? = store.predicateForReminders(in: [store.defaultCalendarForNewReminders()!])
+        if let aPredicate = predicate {
+            // async fetch
+            store.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
+                for reminder: EKReminder? in reminders ?? [EKReminder?]() {
+                    if(!reminder!.isCompleted) {
+                        let task = Task(context: self.context)
+                        task.title = reminder?.title
+                        task.notes = reminder?.notes
+                        task.deferDate = reminder?.startDateComponents?.date
+                        task.dueDate = reminder?.dueDateComponents?.date
+                        task.createTime = Date()
+                        task.splitCount = 1
+                        task.costMinutes = 5
+                        task.energyLevel = 3
+                        task.isDone = false
+                        task.project = self.sourceProject
+                        self.tasks.insert(task, at: 0)
+                        try? self.store.remove(reminder!, commit: true)
+                    }
+                }
+                try? self.context.save()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
+            })
+        }
+    }
+    
+    func refreshTasks() {
+        requestReminders()
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        let predicate = NSPredicate(format: "project == %@ && isDone == false", sourceProject ?? 0)
+        request.predicate = predicate
+        tasks = try! context.fetch(request)
+        tasks = tasks.sorted(by: {$0.createTime! > $1.createTime!})
+        tableView.reloadData()
+    }
+
     func checkMarkTapped(sender: TaskTableViewCell) {
         if let indexPath = tableView.indexPath(for: sender) {
             let task = tasks[indexPath.row]
-            if task.splitCount == 1 {
+            if task.splitCount == 1 { 
                 if task.isDone {
                     task.isDone = false
                     // TODO: Use NSBatchDeleteRequest to delete actions
@@ -47,6 +100,7 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
                     }
                 } else {
                     task.isDone = true
+                    task.removeFromDependents(task.dependents!)
                     let action = Action(context: context)
                     action.costMinutes = task.costMinutes
                     action.doneTime = Date()
@@ -54,7 +108,7 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
                     action.energyLevel = task.energyLevel
                     action.task = task
                 }
-                try! context.save()
+                try? context.save()
             }
             else {
                 let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -67,56 +121,6 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
         }
     }
     
-    func checkReminderAuthorizationStatus() {
-        let status = EKEventStore.authorizationStatus(for: .reminder)
-        switch status {
-        case .notDetermined:
-            requestAccessToReminder()
-        case .authorized:
-            loadReminders()
-        default:
-            break
-        }
-    }
-    
-    func requestAccessToReminder() {
-        store.requestAccess(to: EKEntityType.reminder, completion: {
-            (accessGranted: Bool, error: Error?) in
-            
-            if accessGranted == true {
-                DispatchQueue.main.async(execute: {
-                    self.loadReminders()
-                    self.updateTasks()
-                })
-            }
-        })
-    }
-    
-    func loadReminders() {
-        let predicate: NSPredicate? = store.predicateForReminders(in: [store.defaultCalendarForNewReminders()!])
-        if let aPredicate = predicate {
-            store.fetchReminders(matching: aPredicate, completion: {(_ reminders: [EKReminder]?) -> Void in
-                for reminder: EKReminder? in reminders ?? [EKReminder?]() {
-                    if(!reminder!.isCompleted) {
-                        let task = Task(context: self.context)
-                        task.title = reminder?.title
-                        task.notes = reminder?.notes
-                        task.dueDate = reminder?.dueDateComponents?.date
-                        try? self.store.remove(reminder!, commit: true)
-                        try? self.context.save()
-                    }
-                }
-            })
-        }
-    }
-    
-    func updateTasks() {
-        let request: NSFetchRequest<Task> = Task.fetchRequest()
-        let predicate = NSPredicate(format: "project == %@ && isDone == false", sourceProject ?? 0)
-        request.predicate = predicate
-        tasks = try! context.fetch(request)
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

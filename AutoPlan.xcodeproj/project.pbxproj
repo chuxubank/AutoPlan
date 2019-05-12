@@ -13,7 +13,10 @@
 		E521D5C622831D47000767DE /* DayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E521D5C522831D47000767DE /* DayListTableViewController.swift */; };
 		E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */; };
 		E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E536D54A227FEADB002C72ED /* PickerLabel.swift */; };
+		E53CA6C122870E58000AC50B /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53CA6C022870E58000AC50B /* Project.swift */; };
 		E5540A232283748300009F37 /* ActionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5540A222283748300009F37 /* ActionListTableViewController.swift */; };
+		E55FEE19228714CD000E8283 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FEE18228714CD000E8283 /* EventTableViewCell.swift */; };
+		E55FEE1B22872D51000E8283 /* NextActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55FEE1A22872D51000E8283 /* NextActionTableViewCell.swift */; };
 		E565DF362251929D00B2531D /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565DF352251929D00B2531D /* TodayTableViewController.swift */; };
 		E565DF3922519CCF00B2531D /* AutoPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */; };
 		E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */; };
@@ -44,7 +47,10 @@
 		E521D5C522831D47000767DE /* DayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListTableViewController.swift; sourceTree = "<group>"; };
 		E536D548227FE0DE002C72ED /* AddEditActionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActionTableViewController.swift; sourceTree = "<group>"; };
 		E536D54A227FEADB002C72ED /* PickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerLabel.swift; sourceTree = "<group>"; };
+		E53CA6C022870E58000AC50B /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E5540A222283748300009F37 /* ActionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListTableViewController.swift; sourceTree = "<group>"; };
+		E55FEE18228714CD000E8283 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		E55FEE1A22872D51000E8283 /* NextActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextActionTableViewCell.swift; sourceTree = "<group>"; };
 		E565DF352251929D00B2531D /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		E565DF3822519CCF00B2531D /* AutoPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoPlan.xcdatamodel; sourceTree = "<group>"; };
 		E566D5F32279322000C8A363 /* SelectTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +133,8 @@
 		E5594922228363DF0088C372 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				E55FEE18228714CD000E8283 /* EventTableViewCell.swift */,
+				E55FEE1A22872D51000E8283 /* NextActionTableViewCell.swift */,
 				E565DF352251929D00B2531D /* TodayTableViewController.swift */,
 			);
 			path = Today;
@@ -192,6 +200,7 @@
 			children = (
 				E565DF3722519CCF00B2531D /* AutoPlan.xcdatamodeld */,
 				E5E8C65B227D40A300D354C6 /* Task.swift */,
+				E53CA6C022870E58000AC50B /* Project.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55FEE1B22872D51000E8283 /* NextActionTableViewCell.swift in Sources */,
+				E55FEE19228714CD000E8283 /* EventTableViewCell.swift in Sources */,
 				E5CAD72922543AEE00936D9D /* TaskTableViewCell.swift in Sources */,
 				E566D5F42279322000C8A363 /* SelectTaskTableViewController.swift in Sources */,
 				E508BC3D226B43F6009BBC31 /* SelectProjectTableViewController.swift in Sources */,
@@ -347,6 +358,7 @@
 				E5A31CA72266B49C0047233B /* AddEditProjectTableViewController.swift in Sources */,
 				E521D5C622831D47000767DE /* DayListTableViewController.swift in Sources */,
 				E536D549227FE0DE002C72ED /* AddEditActionTableViewController.swift in Sources */,
+				E53CA6C122870E58000AC50B /* Project.swift in Sources */,
 				E536D54B227FEADB002C72ED /* PickerLabel.swift in Sources */,
 				E5A31CA322669CC90047233B /* ProjectListTableViewController.swift in Sources */,
 				E50B0AA12282E5F200BFCADD /* UIColor.swift in Sources */,

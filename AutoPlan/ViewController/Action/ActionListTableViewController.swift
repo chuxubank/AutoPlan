@@ -55,7 +55,7 @@ class ActionListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath)
         let action = actions[indexPath.row]
         let appendText = action.task?.splitCount == 1 ? "" :
-            " \(action.doneUnitCount)" + action.task!.splitUnit!
+            " \(action.doneUnitCount) " + action.task!.splitUnit!
         cell.textLabel?.text = action.task!.title! + appendText
         dateFormatter.timeStyle = .medium
         dateFormatter.dateStyle = .none
@@ -66,8 +66,9 @@ class ActionListTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            context.delete(actions[indexPath.row])
+            context.delete(actions.remove(at: indexPath.row))
             tableView.deleteRows(at: [indexPath], with: .fade)
+            try? context.save()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

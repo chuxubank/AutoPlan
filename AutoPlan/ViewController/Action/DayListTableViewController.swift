@@ -28,7 +28,7 @@ class DayListTableViewController: UITableViewController {
         let request: NSFetchRequest<Action> = Action.fetchRequest()
         actions = try! context.fetch(request)
         data.removeAll()
-        
+        // count actions per day
         for action in actions {
             var haveSameDay = false
             for date in data.keys {
@@ -41,7 +41,7 @@ class DayListTableViewController: UITableViewController {
                 data[action.doneTime!] = 1
             }
         }
-        
+        // sort date
         dateArray = data.keys.sorted(by: >)
         tableView.reloadData()
     }
@@ -82,8 +82,9 @@ class DayListTableViewController: UITableViewController {
                     context.delete(action)
                 }
             }
-            try? context.save()
+            data.removeValue(forKey: date)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            try? context.save()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
