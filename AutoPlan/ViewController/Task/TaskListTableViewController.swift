@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import EventKit
 
-class TaskListTableViewController: UITableViewController, TaskCellDelegate {
+class TaskListTableViewController: UITableViewController, TaskCellDelegate, UISearchBarDelegate {
     
     let context = AppDelegate.viewContext
     var store = EKEventStore()
@@ -19,6 +19,24 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
         didSet {
             self.title = sourceProject?.title
         }
+    }
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 搜索框设置
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        
+        // 导航栏设置
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,5 +216,28 @@ class TaskListTableViewController: UITableViewController, TaskCellDelegate {
 
     @IBAction func unwindToTaskList(segue: UIStoryboardSegue) {
         
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        if !searchText.isEmpty {
+            let request: NSFetchRequest<Task> = Task.fetchRequest()
+            let predicate = NSPredicate(format: "title contains[cd] %@", searchText)
+            request.predicate = predicate
+            tasks = try! context.fetch(request)
+            tasks = tasks.sorted(by: {$0.createTime! > $1.createTime!})
+            tableView.reloadData()
+        } else {
+            refreshTasks()
+        }
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+}
+
+extension TaskListTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
